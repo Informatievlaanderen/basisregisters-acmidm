@@ -14,6 +14,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		paket.dependencies = paket.dependencies
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{B5EBD44D-0708-49BB-A820-778F9C1A4319}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Be.Vlaanderen.Basisregisters.AcmIdm.Tests", "test\Be.Vlaanderen.Basisregisters.AcmIdm.Tests\Be.Vlaanderen.Basisregisters.AcmIdm.Tests.csproj", "{78A4AD4A-BC34-449E-8B2B-F2D17F19688E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,6 +26,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{7DF58A0C-4EC2-4824-AD63-15A8D890F917} = {D4FF36A3-8219-429F-9E74-845031115A7A}
 		{4B2BB0C0-7162-43BF-9B58-8B1773435626} = {D4FF36A3-8219-429F-9E74-845031115A7A}
+		{78A4AD4A-BC34-449E-8B2B-F2D17F19688E} = {B5EBD44D-0708-49BB-A820-778F9C1A4319}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{4B2BB0C0-7162-43BF-9B58-8B1773435626}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -32,5 +37,9 @@ Global
 		{7DF58A0C-4EC2-4824-AD63-15A8D890F917}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DF58A0C-4EC2-4824-AD63-15A8D890F917}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DF58A0C-4EC2-4824-AD63-15A8D890F917}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78A4AD4A-BC34-449E-8B2B-F2D17F19688E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78A4AD4A-BC34-449E-8B2B-F2D17F19688E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78A4AD4A-BC34-449E-8B2B-F2D17F19688E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78A4AD4A-BC34-449E-8B2B-F2D17F19688E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
