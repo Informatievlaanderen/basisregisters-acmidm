@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <RootNamespace>Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions</RootNamespace>
+    </PropertyGroup>
+
+    <Import Project="..\..\packages\Be.Vlaanderen.Basisregisters.Build.Pipeline\Content\Be.Vlaanderen.Basisregisters.Build.Pipeline.Settings.Library.props" />
+    <Import Project="..\..\.paket\Paket.Restore.targets" />
+
+</Project>

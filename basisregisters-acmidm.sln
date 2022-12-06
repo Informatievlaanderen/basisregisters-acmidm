@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions", "src\Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions\Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions.csproj", "{4B2BB0C0-7162-43BF-9B58-8B1773435626}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Be.Vlaanderen.Basisregisters.AcmIdm.Core", "src\Be.Vlaanderen.Basisregisters.AcmIdm.Core\Be.Vlaanderen.Basisregisters.AcmIdm.Core.csproj", "{7DF58A0C-4EC2-4824-AD63-15A8D890F917}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D4FF36A3-8219-429F-9E74-845031115A7A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{348AC174-36F0-4816-A7A0-38AE4D633014}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		README.md = README.md
+		global.json = global.json
+		paket.dependencies = paket.dependencies
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7DF58A0C-4EC2-4824-AD63-15A8D890F917} = {D4FF36A3-8219-429F-9E74-845031115A7A}
+		{4B2BB0C0-7162-43BF-9B58-8B1773435626} = {D4FF36A3-8219-429F-9E74-845031115A7A}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4B2BB0C0-7162-43BF-9B58-8B1773435626}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B2BB0C0-7162-43BF-9B58-8B1773435626}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B2BB0C0-7162-43BF-9B58-8B1773435626}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B2BB0C0-7162-43BF-9B58-8B1773435626}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DF58A0C-4EC2-4824-AD63-15A8D890F917}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DF58A0C-4EC2-4824-AD63-15A8D890F917}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DF58A0C-4EC2-4824-AD63-15A8D890F917}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DF58A0C-4EC2-4824-AD63-15A8D890F917}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
