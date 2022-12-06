@@ -1,2 +1,5 @@
 SourceLink.Embed.AllSourceFiles
 SourceLink.Copy.PdbFiles
+
+Microsoft.AspNetCore.Authentication.JwtBearer
+IdentityModel.AspNetCore.OAuth2Introspection
