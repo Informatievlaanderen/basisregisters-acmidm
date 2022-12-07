@@ -7,31 +7,46 @@
 
     public static class AddAuthenticationExtensions
     {
-        public static AuthenticationBuilder AddAcmIdmAuthentication(this IServiceCollection services)
+        public static AuthenticationBuilder AddAcmIdmAuthentication(
+            this IServiceCollection services,
+            string clientId,
+            string clientSecret,
+            string authority,
+            string introspectionEndpoint)
         {
-            return services.AddAuthentication(
-                options =>
-                {
-                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                });
+            return services.AddAcmIdmAuthentication(new OAuth2IntrospectionOptions
+            {
+                ClientId = clientId,
+                ClientSecret = clientSecret,
+                Authority = authority,
+                IntrospectionEndpoint = introspectionEndpoint
+            });
         }
 
-        public static AuthenticationBuilder AddAcmIdmIntrospection(
-            this AuthenticationBuilder builder,
-            OAuth2IntrospectionOptions configOptions)
+        public static AuthenticationBuilder AddAcmIdmAuthentication(
+            this IServiceCollection services,
+            OAuth2IntrospectionOptions oAuth2IntrospectionOptions)
         {
-            return builder.AddOAuth2Introspection(
-                JwtBearerDefaults.AuthenticationScheme,
-                options =>
-                {
-                    options.ClientId = configOptions.ClientId;
-                    options.ClientSecret = configOptions.ClientSecret;
-                    options.Authority = configOptions.Authority;
-                    options.IntrospectionEndpoint = configOptions.IntrospectionEndpoint;
-                }
-            );
+            return services
+                .AddAuthentication(
+                    options =>
+                    {
+                        options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                    })
+                .AddOAuth2Introspection(
+                    JwtBearerDefaults.AuthenticationScheme,
+                    options =>
+                    {
+                        options.ClientId = oAuth2IntrospectionOptions.ClientId;
+                        options.ClientSecret = oAuth2IntrospectionOptions.ClientSecret;
+                        options.Authority = oAuth2IntrospectionOptions.Authority;
+                        options.IntrospectionEndpoint = oAuth2IntrospectionOptions.IntrospectionEndpoint;
+                    }
+                );
+
+
         }
     }
 }

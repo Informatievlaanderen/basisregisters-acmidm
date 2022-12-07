@@ -10,15 +10,15 @@
 
     public class RequiredScopesAuthorizationHandlerTests
     {
-        private readonly RequiredScopesAuthorizationHandler _sut;
-        private readonly string[] _requiredScopes = {
+        private readonly RequiredScopesAuthorizationHandler _requiredScopesAuthorizationHandler;
+        private readonly string[] _allowedValues = {
             "dv_gr_geschetstgebouw_beheer",
             "dv_gr_geschetstgebouw_uitzonderingen"
         };
 
         public RequiredScopesAuthorizationHandlerTests()
         {
-            _sut = new RequiredScopesAuthorizationHandler();
+            _requiredScopesAuthorizationHandler = new RequiredScopesAuthorizationHandler();
         }
 
         [Fact]
@@ -27,41 +27,37 @@
             // Arrange
             var user = new ClaimsPrincipal(
                 new ClaimsIdentity(
-                    _requiredScopes
+                    _allowedValues
                         .Select(x => new Claim(Abstractions.ClaimTypes.Scope, x))
                         .ToArray(),
                     "Bearer")
             );
             var context = new AuthorizationHandlerContext(
-                new IAuthorizationRequirement[] { new RequiredScopesAuthorizationRequirement(_requiredScopes)},
+                new IAuthorizationRequirement[] { new RequiredScopesAuthorizationRequirement(_allowedValues)},
                 user,
                 null);
 
             //Act
-            await _sut.HandleAsync(context);
+            await _requiredScopesAuthorizationHandler.HandleAsync(context);
 
             //Assert
             context.HasSucceeded.Should().BeTrue();
         }
+
         [Fact]
         public async Task WhenMissingRequiredScopesPresent_ThenUnauthorized()
         {
             // Arrange
             var user = new ClaimsPrincipal(
-                new ClaimsIdentity(
-                    _requiredScopes
-                        .Select(x => new Claim(Abstractions.ClaimTypes.Scope, x))
-                        .Take(_requiredScopes.Length - 1)
-                        .ToArray(),
-                    "Bearer")
+                new ClaimsIdentity(Enumerable.Empty<Claim>())
             );
             var context = new AuthorizationHandlerContext(
-                new IAuthorizationRequirement[] { new RequiredScopesAuthorizationRequirement(_requiredScopes)},
+                new IAuthorizationRequirement[] { new RequiredScopesAuthorizationRequirement(_allowedValues) },
                 user,
                 null);
 
             //Act
-            await _sut.HandleAsync(context);
+            await _requiredScopesAuthorizationHandler.HandleAsync(context);
 
             //Assert
             context.HasSucceeded.Should().BeFalse();
