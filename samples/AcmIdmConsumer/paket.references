@@ -4,7 +4,7 @@ Be.Vlaanderen.Basisregisters.Build.Pipeline
 
 EntityFramework
 Microsoft.EntityFrameworkCore.Design
-Microsoft.SqlServer.Types
 Microsoft.AspNetCore.Mvc.NewtonsoftJson
 Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore
+

@@ -538,7 +538,6 @@ NUGET
     Microsoft.NETCore.Targets (5.0)
     Microsoft.OpenApi (1.4.5)
     Microsoft.SqlServer.Server (1.0)
-    Microsoft.SqlServer.Types (13.0.4001)
     Microsoft.SyndicationFeed.ReaderWriter (1.0.2)
       System.Globalization (>= 4.3)
       System.Linq (>= 4.3)

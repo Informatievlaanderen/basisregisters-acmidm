@@ -5,7 +5,6 @@ nuget Be.Vlaanderen.Basisregisters.Api 18.3.0
 
 nuget EntityFramework 6.4.4
 nuget Microsoft.EntityFrameworkCore.Design 6.0.3
-nuget Microsoft.SqlServer.Types 13.0.4001 // Don't update: requires version 13.0.4001 for legacy reasons
 nuget Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore 6.0.3
 nuget Microsoft.AspNetCore.Mvc.NewtonsoftJson 6.0.3
 nuget Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore 6.0.3

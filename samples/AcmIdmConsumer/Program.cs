@@ -1,41 +1,40 @@
+using System.Security.Principal;
 using Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions;
+using Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions.AuthorizationHandlers;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+
+var ourScope = new[] { "dv_gr_geschetstgebouw_beheer", "dv_gr_geschetstgebouw_uitzonderingen" };
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddAcmIdmAuthentication(
-    "",
-    "",
-    "",
-    "");
+var clientId = "clientId";
+var clientSecret = "clientSecret";
+var authority = "authority";
+var introspectionEndpoint = "introspectionEndpoint";
 
-// Add services to the container.
-builder.Services.AddRazorPages();
+builder.Services.AddSingleton<IAuthorizationHandler, RequiredScopesAuthorizationHandler>();
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer();
+//builder.Services.AddAcmIdmAuthentication(clientId, clientSecret, authority, introspectionEndpoint);
+builder.Services.AddAcmIdmAuthorization(ourScope);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
-}
+app.MapGet("/", (HttpContext httpContext) => { })
+    //.RequireAuthorization("acm-idm-scopes")
+    ;
 
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-
-app.MapGet("/", () => { })
-    .RequireAuthorization(
-        "dv_gr_geschetstgebouw_beheer",
-        "dv_gr_geschetstgebouw_uitzonderingen");
-app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization()
-    .UseAcmIdmAuthorization();
-
-app.MapRazorPages();
+    .UseAcmIdmAuthorization(ourScope);
 
 app.Run();
