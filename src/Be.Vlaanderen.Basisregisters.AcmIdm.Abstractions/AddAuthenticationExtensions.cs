@@ -1,4 +1,4 @@
-﻿namespace Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions
+namespace Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions
 {
     using IdentityModel.AspNetCore.OAuth2Introspection;
     using Microsoft.AspNetCore.Authentication;
@@ -28,25 +28,21 @@
             OAuth2IntrospectionOptions oAuth2IntrospectionOptions)
         {
             return services
-                .AddAuthentication(
-                    options =>
-                    {
-                        options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-                        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                    })
-                .AddOAuth2Introspection(
-                    JwtBearerDefaults.AuthenticationScheme,
-                    options =>
-                    {
-                        options.ClientId = oAuth2IntrospectionOptions.ClientId;
-                        options.ClientSecret = oAuth2IntrospectionOptions.ClientSecret;
-                        options.Authority = oAuth2IntrospectionOptions.Authority;
-                        options.IntrospectionEndpoint = oAuth2IntrospectionOptions.IntrospectionEndpoint;
-                    }
+                .AddAuthentication(options =>
+                {
+                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                }
+                //)
+                //.AddOAuth2Introspection(JwtBearerDefaults.AuthenticationScheme, options =>
+                // {
+                //     options.ClientId = oAuth2IntrospectionOptions.ClientId;
+                //     options.ClientSecret = oAuth2IntrospectionOptions.ClientSecret;
+                //     options.Authority = oAuth2IntrospectionOptions.Authority;
+                //     options.IntrospectionEndpoint = oAuth2IntrospectionOptions.IntrospectionEndpoint;
+                // }
                 );
-
-
         }
     }
 }

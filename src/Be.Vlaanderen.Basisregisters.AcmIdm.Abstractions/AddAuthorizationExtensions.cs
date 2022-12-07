@@ -1,36 +1,44 @@
-﻿namespace Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions
+using Microsoft.Extensions.DependencyInjection;
+
+namespace Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions
 {
-    using System;
-    using System.Linq;
     using AuthorizationHandlers;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Builder;
 
     public static class AddAuthorizationExtensions
     {
-        public static TBuilder RequireAcmIdmAuthorization<TBuilder>(this TBuilder builder, params string[] policyNames)
-            where TBuilder : IEndpointConventionBuilder
+        //public static TBuilder RequireAcmIdmAuthorization<TBuilder>(this TBuilder builder, params string[] policyNames)
+        //    where TBuilder : IEndpointConventionBuilder
+        //{
+        //    ArgumentNullException.ThrowIfNull(builder);
+        //    ArgumentNullException.ThrowIfNull(policyNames);
+
+        //    return builder.RequireAuthorization(policyNames.Select(n => new AuthorizeAttribute(n)).ToArray());
+        //}
+
+        public static IServiceCollection AddAcmIdmAuthorization(
+            this IServiceCollection services,
+            params string[] allowedValues)
         {
-            if (builder == null)
-            {
-                throw new ArgumentNullException(nameof(builder));
-            }
+            services.AddAuthorizationBuilder()
+                .AddPolicy("acm-idm-scopes", policy =>
+                    policy
+                        .RequireScope(allowedValues));
 
-            if (policyNames == null)
-            {
-                throw new ArgumentNullException(nameof(policyNames));
-            }
-
-            return builder.RequireAuthorization(policyNames.Select(n => new AuthorizeAttribute(n)).ToArray());
+            return services;
         }
 
         public static IApplicationBuilder UseAcmIdmAuthorization(
-            this IApplicationBuilder applicationBuilder)
+            this IApplicationBuilder builder,
+            params string[] allowedValues)
         {
-            applicationBuilder.UseAuthorization();
-            AuthorizationPolicy.Combine(new AuthorizationPolicyBuilder().AddScopesRequirement().Build());
+            builder.UseAuthorization();
+            AuthorizationPolicy.Combine(new AuthorizationPolicyBuilder()
+                .RequireScope(allowedValues)
+                .Build());
 
-            return applicationBuilder;
+            return builder;
         }
 
         public static AuthorizationOptions AddRequiredScopesPolicy(
@@ -40,29 +48,13 @@
         {
             options.AddPolicy(
                 policyName,
-                b => b.AddScopesRequirement(allowedValues));
-
-            // // Same as
-            // options.AddPolicy("", b => b.RequireClaim(ClaimTypes.Scope, allowedValues));
+                b => b.RequireScope(allowedValues));
 
             return options;
         }
 
-        private static AuthorizationPolicyBuilder AddScopesRequirement(
-            this AuthorizationPolicyBuilder builder,
-            params string[] scopes)
-        {
-            // Same as
-            // builder.RequireClaim(ClaimTypes.Scope, scopes);
+        public static AuthorizationPolicyBuilder RequireScope(this AuthorizationPolicyBuilder builder, params string[] allowedValues) => builder.AddRequirements(new RequiredScopesAuthorizationRequirement(allowedValues));
 
-            return builder.AddRequirements(new RequiredScopesAuthorizationRequirement(scopes));
-        }
-
-        public static AuthorizationPolicyBuilder AddOvoCodeRequirement(
-            this AuthorizationPolicyBuilder builder,
-            IOvoCodeValidator ovoCodeValidator)
-        {
-            return builder.AddRequirements(new OvoCodeAuthorizationRequirement(ovoCodeValidator));
-        }
+        public static AuthorizationPolicyBuilder AddOvoCodeRequirement(this AuthorizationPolicyBuilder builder, IOvoCodeValidator ovoCodeValidator) => builder.AddRequirements(new OvoCodeAuthorizationRequirement(ovoCodeValidator));
     }
 }
