@@ -6,11 +6,11 @@
 
     public class RequiredScopesAuthorizationRequirement : IAuthorizationRequirement
     {
-        public IReadOnlyList<string> Scopes { get; }
+        public IReadOnlyList<string> AllowedValues { get; }
 
-        public RequiredScopesAuthorizationRequirement(params string[] scopes)
+        public RequiredScopesAuthorizationRequirement(params string[] allowedValues)
         {
-            Scopes = scopes.ToList();
+            AllowedValues = allowedValues.ToList();
         }
     }
 }

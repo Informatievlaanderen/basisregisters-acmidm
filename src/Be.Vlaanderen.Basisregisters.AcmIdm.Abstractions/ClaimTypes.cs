@@ -1,6 +1,6 @@
 ﻿namespace Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions
 {
-    public class ClaimTypes
+    public static class ClaimTypes
     {
         public const string Scope = "scope";
         public const string VoOrgCode = "vo_orgcode";

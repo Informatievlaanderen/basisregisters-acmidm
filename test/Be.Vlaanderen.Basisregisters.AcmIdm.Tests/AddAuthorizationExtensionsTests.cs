@@ -7,7 +7,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Xunit;
 
-    public class AddAuthenticationExtensionsTests
+    public class AddAuthorizationExtensionsTests
     {
         [Fact]
         public void SetupRequiredScopesPolicy()
@@ -24,7 +24,7 @@
 
             var policyRequirement = policy.Requirements.Single() as RequiredScopesAuthorizationRequirement;
             policyRequirement.Should().NotBeNull();
-            policyRequirement!.Scopes.Should().BeEquivalentTo(requiredScopes);
+            policyRequirement!.AllowedValues.Should().BeEquivalentTo(requiredScopes);
         }
     }
 }
