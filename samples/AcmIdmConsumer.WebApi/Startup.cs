@@ -6,10 +6,8 @@
     using Autofac;
     using Autofac.Extensions.DependencyInjection;
     using Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions;
-    using Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions.AuthorizationHandlers;
     using Be.Vlaanderen.Basisregisters.Api;
     using IdentityModel.AspNetCore.OAuth2Introspection;
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
@@ -68,8 +66,6 @@
                         }
                     }
                 });
-
-            services.AddSingleton<IAuthorizationHandler, RequiredScopesAuthorizationHandler>();
 
             var containerBuilder = new ContainerBuilder();
             containerBuilder.RegisterModule(new ApiModule(services));

@@ -2,7 +2,9 @@
 {
     using Autofac;
     using Autofac.Extensions.DependencyInjection;
+    using Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions.AuthorizationHandlers;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.Extensions.DependencyInjection;
 
     public sealed class ApiModule : Module
@@ -19,6 +21,9 @@
             builder
                 .RegisterType<ProblemDetailsHelper>()
                 .AsSelf();
+
+            // I think we should wrap this in an extension method.
+            _services.AddSingleton<IAuthorizationHandler, RequiredScopesAuthorizationHandler>();
 
             builder.Populate(_services);
         }

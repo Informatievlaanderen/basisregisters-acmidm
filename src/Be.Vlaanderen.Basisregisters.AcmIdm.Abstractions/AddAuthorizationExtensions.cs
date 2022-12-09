@@ -1,5 +1,7 @@
 namespace Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions
 {
+    using System;
+    using System.Collections.Generic;
     using AuthorizationHandlers;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.Extensions.DependencyInjection;
@@ -10,12 +12,17 @@ namespace Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions
         public static IServiceCollection AddAcmIdmAuthorization(
             this IServiceCollection services,
             string policyName,
-            params string[] allowedValues)
+            IEnumerable<string> allowedValues,
+            Action<AuthorizationPolicyBuilder>? optionalRequirements = null)
         {
             services
                 .AddAuthorizationBuilder()
-                .AddPolicy(policyName, policy =>
-                    policy.AddAllowedScopeRequirement(allowedValues));
+                .AddPolicy(policyName, policyBuilder =>
+                {
+                    policyBuilder.AddAllowedScopeRequirement(allowedValues);
+
+                    optionalRequirements?.Invoke(policyBuilder);
+                });
 
             services.AddSingleton<IAuthorizationHandler, RequiredScopesAuthorizationHandler>();
 
@@ -26,18 +33,24 @@ namespace Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions
         public static AuthorizationOptions AddAcmIdmAuthorization(
             this AuthorizationOptions options,
             string policyName,
-            params string[] allowedValues)
+            IEnumerable<string> allowedValues,
+            Action<AuthorizationPolicyBuilder>? optionalRequirements = null)
         {
             options.AddPolicy(
                 policyName,
-                b => b.AddAllowedScopeRequirement(allowedValues));
+                policyBuilder =>
+                {
+                    policyBuilder.AddAllowedScopeRequirement(allowedValues);
+
+                    optionalRequirements?.Invoke(policyBuilder);
+                });
 
             return options;
         }
 
         public static AuthorizationPolicyBuilder AddAllowedScopeRequirement(
             this AuthorizationPolicyBuilder builder,
-            params string[] allowedValues) => builder.AddRequirements(new RequiredScopesAuthorizationRequirement(allowedValues));
+            IEnumerable<string> allowedValues) => builder.AddRequirements(new RequiredScopesAuthorizationRequirement(allowedValues));
 
         public static AuthorizationPolicyBuilder AddOvoCodeRequirement(
             this AuthorizationPolicyBuilder builder,
