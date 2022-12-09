@@ -1,8 +1,8 @@
-﻿namespace Be.Vlaanderen.Basisregisters.AcmIdm.Tests
+﻿namespace Be.Vlaanderen.Basisregisters.AcmIdm.Tests.AuthorizationPolicies
 {
     using System.Linq;
     using Abstractions;
-    using Abstractions.AuthorizationHandlers;
+    using Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions.AuthorizationHandlers;
     using FluentAssertions;
     using Microsoft.AspNetCore.Authorization;
     using Xunit;
@@ -13,10 +13,10 @@
         public void SetupRequiredScopesPolicy()
         {
             const string policyName = "MyPolicy";
-            var requiredScopes = new[] { "dv_gr_geschetstgebouw_beheer", "dv_gr_geschetstgebouw_uitzonderingen" };
+            var allowedValues = new[] { "dv_gr_geschetstgebouw_beheer", "dv_gr_geschetstgebouw_uitzonderingen" };
 
             var authorizationOptions = new AuthorizationOptions()
-                .AddRequiredScopesPolicy(policyName, requiredScopes);
+                .AddAcmIdmAuthorization(policyName, allowedValues);
 
             var policy = authorizationOptions.GetPolicy(policyName);
             policy.Should().NotBeNull();
@@ -24,7 +24,7 @@
 
             var policyRequirement = policy.Requirements.Single() as RequiredScopesAuthorizationRequirement;
             policyRequirement.Should().NotBeNull();
-            policyRequirement!.AllowedValues.Should().BeEquivalentTo(requiredScopes);
+            policyRequirement!.AllowedValues.Should().BeEquivalentTo(allowedValues);
         }
     }
 }

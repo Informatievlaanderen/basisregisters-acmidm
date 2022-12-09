@@ -1,24 +1,24 @@
-﻿namespace Be.Vlaanderen.Basisregisters.AcmIdm.Tests
+﻿namespace Be.Vlaanderen.Basisregisters.AcmIdm.Tests.AuthorizationHandlers
 {
     using System;
     using System.Security.Claims;
     using System.Threading.Tasks;
-    using Abstractions.AuthorizationHandlers;
+    using Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions.AuthorizationHandlers;
     using FluentAssertions;
     using Microsoft.AspNetCore.Authorization;
     using Xunit;
 
     public class OvoCodeAuthorizationHandlerTests
     {
-        private readonly OvoCodeAuthorizationHandler _sut;
+        private readonly OvoCodeAuthorizationHandler _ovoCodeAuthorizationHandler;
 
         public OvoCodeAuthorizationHandlerTests()
         {
-            _sut = new OvoCodeAuthorizationHandler();
+            _ovoCodeAuthorizationHandler = new OvoCodeAuthorizationHandler();
         }
 
         [Fact]
-        public async Task WhenNoOvoCode_ThenUnauthorized()
+        public async Task WhenNoOvoCodeClaimPresent_ThenUnauthorized()
         {
             // Arrange
             var user = new ClaimsPrincipal(
@@ -32,14 +32,14 @@
                 null);
 
             //Act
-            await _sut.HandleAsync(context);
+            await _ovoCodeAuthorizationHandler.HandleAsync(context);
 
             //Assert
             context.HasSucceeded.Should().BeFalse();
         }
 
         [Fact]
-        public async Task WhenInvalidOvoCode_ThenUnauthorized()
+        public async Task WhenInvalidOvoCodeClaimPresent_ThenUnauthorized()
         {
             // Arrange
             const string expectedOvoCode = "OVO002067";
@@ -55,14 +55,14 @@
                 null);
 
             //Act
-            await _sut.HandleAsync(context);
+            await _ovoCodeAuthorizationHandler.HandleAsync(context);
 
             //Assert
             context.HasSucceeded.Should().BeFalse();
         }
 
         [Fact]
-        public async Task WhenValidOvoCode_ThenUnauthorized()
+        public async Task WhenValidOvoCodeClaimPresent_ThenUnauthorized()
         {
             // Arrange
             const string expectedOvoCode = "OVO002067";
@@ -78,7 +78,7 @@
                 null);
 
             //Act
-            await _sut.HandleAsync(context);
+            await _ovoCodeAuthorizationHandler.HandleAsync(context);
 
             //Assert
             context.HasSucceeded.Should().BeTrue();

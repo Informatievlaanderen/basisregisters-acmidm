@@ -1,14 +1,10 @@
 using System;
+using System.Linq;
+using AcmIdmConsumer.MinimalApi;
 using Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions;
 using IdentityModel.AspNetCore.OAuth2Introspection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
-
-var ourScope = new[]
-{
-    "dv_gr_geschetstgebouw_beheer",
-    "dv_gr_geschetstgebouw_uitzonderingen"
-};
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,17 +17,19 @@ builder.Configuration
 
 var oAuth2IntrospectionOptions =
     builder.Configuration.GetSection(nameof(OAuth2IntrospectionOptions)).Get<OAuth2IntrospectionOptions>();
+var acmIdmPolicyOptions =
+    builder.Configuration.GetSection(nameof(AcmIdmPolicyOptions)).Get<AcmIdmPolicyOptions>();
 
 builder.Services.AddAcmIdmAuthentication(oAuth2IntrospectionOptions!);
-builder.Services.AddAcmIdmAuthorization(ourScope);
+builder.Services.AddAcmIdmAuthorization(acmIdmPolicyOptions.PolicyName, acmIdmPolicyOptions.AllowedScopeValues.ToArray());
 
 var app = builder.Build();
 
-app.MapGet("/", () => { })
-    .RequireAuthorization("acm-idm-scopes");
+app
+    .MapGet("/secret", () => "Hello")
+    .RequireAuthorization(acmIdmPolicyOptions.PolicyName);
 
 app.UseAuthentication();
 app.UseAuthorization();
-    //.UseAcmIdmAuthorization(ourScope);
 
 app.Run();

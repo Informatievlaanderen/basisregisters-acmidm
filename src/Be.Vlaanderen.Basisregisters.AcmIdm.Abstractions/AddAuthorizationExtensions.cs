@@ -6,33 +6,36 @@ namespace Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions
 
     public static class AddAuthorizationExtensions
     {
+        // used by minimal api without Be.Vlaanderen.Basisregisters.Api
         public static IServiceCollection AddAcmIdmAuthorization(
             this IServiceCollection services,
+            string policyName,
             params string[] allowedValues)
         {
-            services.AddAuthorizationBuilder()
-                .AddPolicy("acm-idm-scopes", policy =>
-                    policy
-                        .RequireScope(allowedValues));
+            services
+                .AddAuthorizationBuilder()
+                .AddPolicy(policyName, policy =>
+                    policy.AddAllowedScopeRequirement(allowedValues));
 
             services.AddSingleton<IAuthorizationHandler, RequiredScopesAuthorizationHandler>();
 
             return services;
         }
 
-        public static AuthorizationOptions AddRequiredScopesPolicy(
+        // used by projects using Be.Vlaanderen.Basisregisters.Api
+        public static AuthorizationOptions AddAcmIdmAuthorization(
             this AuthorizationOptions options,
             string policyName,
             params string[] allowedValues)
         {
             options.AddPolicy(
                 policyName,
-                b => b.RequireScope(allowedValues));
+                b => b.AddAllowedScopeRequirement(allowedValues));
 
             return options;
         }
 
-        public static AuthorizationPolicyBuilder RequireScope(
+        public static AuthorizationPolicyBuilder AddAllowedScopeRequirement(
             this AuthorizationPolicyBuilder builder,
             params string[] allowedValues) => builder.AddRequirements(new RequiredScopesAuthorizationRequirement(allowedValues));
 

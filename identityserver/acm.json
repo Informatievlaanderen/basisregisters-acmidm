@@ -15,7 +15,17 @@
   ],
   "apiResources": [
     {
-      "name": "acmidm-lib",
+      "name": "acmidmconsumer.minimalapi",
+      "apiSecrets": [
+        "a_very=Secr3t*Key"
+      ],
+      "scopes": [
+        "dv_gr_geschetstgebouw_beheer", 
+        "dv_gr_geschetstgebouw_uitzonderingen"
+      ]
+    },
+    {
+      "name": "acmidmconsumer.webapi",
       "apiSecrets": [
         "a_very=Secr3t*Key"
       ],
