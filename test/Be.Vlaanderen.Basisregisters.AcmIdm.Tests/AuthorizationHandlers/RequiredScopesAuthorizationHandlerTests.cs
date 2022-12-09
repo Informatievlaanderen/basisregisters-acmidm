@@ -1,20 +1,21 @@
-﻿namespace Be.Vlaanderen.Basisregisters.AcmIdm.Tests
+﻿namespace Be.Vlaanderen.Basisregisters.AcmIdm.Tests.AuthorizationHandlers
 {
     using System.Linq;
     using System.Security.Claims;
     using System.Threading.Tasks;
-    using Abstractions.AuthorizationHandlers;
+    using Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions.AuthorizationHandlers;
     using FluentAssertions;
     using Microsoft.AspNetCore.Authorization;
     using Xunit;
 
     public class RequiredScopesAuthorizationHandlerTests
     {
-        private readonly RequiredScopesAuthorizationHandler _requiredScopesAuthorizationHandler;
         private readonly string[] _allowedValues = {
             "dv_gr_geschetstgebouw_beheer",
             "dv_gr_geschetstgebouw_uitzonderingen"
         };
+
+        private readonly RequiredScopesAuthorizationHandler _requiredScopesAuthorizationHandler;
 
         public RequiredScopesAuthorizationHandlerTests()
         {
@@ -22,13 +23,14 @@
         }
 
         [Fact]
-        public async Task WhenAllRequiredScopesPresent_ThenAuthorized()
+        public async Task WhenAtLeastOneScopesPresent_ThenAuthorized()
         {
             // Arrange
             var user = new ClaimsPrincipal(
                 new ClaimsIdentity(
                     _allowedValues
                         .Select(x => new Claim(Abstractions.ClaimTypes.Scope, x))
+                        .Take(1)
                         .ToArray(),
                     "Bearer")
             );
@@ -45,7 +47,7 @@
         }
 
         [Fact]
-        public async Task WhenMissingRequiredScopesPresent_ThenUnauthorized()
+        public async Task WhenNoneOfAllowedScopesPresent_ThenUnauthorized()
         {
             // Arrange
             var user = new ClaimsPrincipal(
