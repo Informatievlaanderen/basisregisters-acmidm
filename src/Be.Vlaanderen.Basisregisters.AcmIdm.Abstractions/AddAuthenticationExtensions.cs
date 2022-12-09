@@ -33,16 +33,14 @@ namespace Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions
                     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
                     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                }
-                //)
-                //.AddOAuth2Introspection(JwtBearerDefaults.AuthenticationScheme, options =>
-                // {
-                //     options.ClientId = oAuth2IntrospectionOptions.ClientId;
-                //     options.ClientSecret = oAuth2IntrospectionOptions.ClientSecret;
-                //     options.Authority = oAuth2IntrospectionOptions.Authority;
-                //     options.IntrospectionEndpoint = oAuth2IntrospectionOptions.IntrospectionEndpoint;
-                // }
-                );
+                })
+                .AddOAuth2Introspection(JwtBearerDefaults.AuthenticationScheme, options =>
+                {
+                    options.ClientId = oAuth2IntrospectionOptions.ClientId;
+                    options.ClientSecret = oAuth2IntrospectionOptions.ClientSecret;
+                    options.Authority = oAuth2IntrospectionOptions.Authority;
+                    options.IntrospectionEndpoint = oAuth2IntrospectionOptions.IntrospectionEndpoint;
+                });
         }
     }
 }

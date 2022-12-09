@@ -20,7 +20,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Be.Vlaanderen.Basisregister
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{1BB295E7-547A-4835-A20E-6C79D2618BD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcmIdmConsumer", "samples\AcmIdmConsumer\AcmIdmConsumer.csproj", "{FFB8BC20-5611-4332-BEBA-57C3A3216C10}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcmIdmConsumer.MinimalApi", "samples\AcmIdmConsumer.MinimalApi\AcmIdmConsumer.MinimalApi.csproj", "{FFB8BC20-5611-4332-BEBA-57C3A3216C10}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

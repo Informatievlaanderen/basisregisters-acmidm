@@ -1,0 +1,44 @@
+{
+  "identityResources": [
+    {
+      "name": "dv",
+      "displayName": "Digitaal Vlaanderen",
+      "userClaims": [
+        "dv_gr_geschetstgebouw_beheer", 
+        "dv_gr_geschetstgebouw_uitzonderingen"
+      ]
+    }
+  ],
+  "apiScopes": [
+    "dv_gr_geschetstgebouw_beheer", 
+    "dv_gr_geschetstgebouw_uitzonderingen"
+  ],
+  "apiResources": [
+    {
+      "name": "acmidm-lib",
+      "apiSecrets": [
+        "a_very=Secr3t*Key"
+      ],
+      "scopes": [
+        "dv_gr_geschetstgebouw_beheer", 
+        "dv_gr_geschetstgebouw_uitzonderingen"
+      ]
+    }
+  ],
+  "clients": [
+    {
+      "clientId": "acmClient",
+      "clientSecrets": [
+        "secret"
+      ],
+      "allowedGrantTypes": "clientCredentials",
+      "allowedScopes":[
+        "dv_gr_geschetstgebouw_beheer", 
+        "dv_gr_geschetstgebouw_uitzonderingen"
+      ],
+      "accessTokenLifetime": -1,
+      "identityTokenLifetime": -1,
+      "clientClaimsPrefix": ""
+    }
+  ]
+}
