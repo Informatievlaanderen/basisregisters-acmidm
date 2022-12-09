@@ -8,7 +8,7 @@ namespace Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions.AuthorizationHandlers
     {
         public IReadOnlyList<string> AllowedValues { get; }
 
-        public RequiredScopesAuthorizationRequirement(params string[] allowedValues)
+        public RequiredScopesAuthorizationRequirement(IEnumerable<string> allowedValues)
         {
             AllowedValues = allowedValues.ToList();
         }
