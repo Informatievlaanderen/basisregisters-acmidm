@@ -3,7 +3,7 @@
     using System.Linq;
     using System.Security.Claims;
     using System.Threading.Tasks;
-    using Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions.AuthorizationHandlers;
+    using Be.Vlaanderen.Basisregisters.AcmIdm.AuthorizationHandlers;
     using FluentAssertions;
     using Microsoft.AspNetCore.Authorization;
     using Xunit;
@@ -29,7 +29,7 @@
             var user = new ClaimsPrincipal(
                 new ClaimsIdentity(
                     _allowedValues
-                        .Select(x => new Claim(Abstractions.ClaimTypes.Scope, x))
+                        .Select(x => new Claim(AcmIdm.ClaimTypes.Scope, x))
                         .Take(1)
                         .ToArray(),
                     "Bearer")

@@ -41,13 +41,14 @@
             response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
 
-        [Fact]
-        public async Task GivenWebApi_WhenClientHasNoneOfTheValidScopes_ThenRequestIsUnauthorized()
+        [Theory]
+        [InlineData("another_scope")]
+        public async Task GivenWebApi_WhenClientHasNoneOfTheValidScopes_ThenRequestIsUnauthorized(string scope)
         {
             var accessToken = await GetAccessToken(
                 ClientId,
                 ClientSecret,
-                "another_scope");
+                scope);
 
             var minimalApiHttpClient = RunWebApiSample().CreateClient();
             minimalApiHttpClient.DefaultRequestHeaders.Authorization =

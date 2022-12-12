@@ -1,4 +1,4 @@
-﻿namespace Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions.AuthorizationHandlers
+﻿namespace Be.Vlaanderen.Basisregisters.AcmIdm.AuthorizationHandlers
 {
     using System.Linq;
     using System.Threading.Tasks;

@@ -5,7 +5,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\samples\AcmIdmConsumer.MinimalApi\AcmIdmConsumer.MinimalApi.csproj" />
     <ProjectReference Include="..\..\samples\AcmIdmConsumer.WebApi\AcmIdmConsumer.WebApi.csproj" />
-    <ProjectReference Include="..\..\src\Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions\Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions.csproj" />
+    <ProjectReference Include="..\..\src\Be.Vlaanderen.Basisregisters.AcmIdm\Be.Vlaanderen.Basisregisters.AcmIdm.csproj" />
     <ProjectReference Include="..\Be.Vlaanderen.Basisregisters.AcmIdm.Tests.ContainerHelper\Be.Vlaanderen.Basisregisters.AcmIdm.Tests.ContainerHelper.csproj" />
   </ItemGroup>
   
