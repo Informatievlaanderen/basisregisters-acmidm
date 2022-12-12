@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <RootNamespace>Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions</RootNamespace>
+        <RootNamespace>Be.Vlaanderen.Basisregisters.AcmIdm</RootNamespace>
     </PropertyGroup>
 
     <Import Project="..\..\packages\Be.Vlaanderen.Basisregisters.Build.Pipeline\Content\Be.Vlaanderen.Basisregisters.Build.Pipeline.Settings.Library.props" />

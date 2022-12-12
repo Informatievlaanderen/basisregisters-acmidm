@@ -1,8 +1,7 @@
 ﻿namespace Be.Vlaanderen.Basisregisters.AcmIdm.Tests.AuthorizationPolicies
 {
     using System.Linq;
-    using Abstractions;
-    using Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions.AuthorizationHandlers;
+    using Be.Vlaanderen.Basisregisters.AcmIdm.AuthorizationHandlers;
     using FluentAssertions;
     using Microsoft.AspNetCore.Authorization;
     using Xunit;

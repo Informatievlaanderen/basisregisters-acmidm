@@ -1,6 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions;
+namespace Be.Vlaanderen.Basisregisters.AcmIdm;
 
 public static class AuthorizationBuilderExtensions
 {

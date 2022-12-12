@@ -2,7 +2,8 @@ namespace AcmIdmConsumer.MinimalApi
 {
     using System;
     using System.Linq;
-    using Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions;
+    using System.Security.Claims;
+    using Be.Vlaanderen.Basisregisters.AcmIdm;
     using IdentityModel.AspNetCore.OAuth2Introspection;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Configuration;
@@ -26,13 +27,18 @@ namespace AcmIdmConsumer.MinimalApi
                 builder.Configuration.GetSection(nameof(AcmIdmPolicyOptions)).Get<AcmIdmPolicyOptions>();
 
             builder.Services.AddAcmIdmAuthentication(oAuth2IntrospectionOptions!);
-            builder.Services.AddAcmIdmAuthorization(acmIdmPolicyOptions.PolicyName, acmIdmPolicyOptions.AllowedScopeValues.ToArray());
+            builder.Services.AddAcmIdmAuthorization(PolicyNames.AcmIdmPolicy, acmIdmPolicyOptions.AllowedScopeValues);
 
             var app = builder.Build();
 
             app
-                .MapGet("/secret", () => "Hello")
-                .RequireAuthorization(acmIdmPolicyOptions.PolicyName);
+                .MapGet("/secret", (ClaimsPrincipal user) =>
+                {
+                    user.Claims.ToList()
+                        .ForEach(x => Console.WriteLine($"{x.Type}: {x.Value}"));
+                    return "Joow";
+                })
+                .RequireAuthorization(PolicyNames.AcmIdmPolicy);
 
             app.UseAuthentication();
             app.UseAuthorization();

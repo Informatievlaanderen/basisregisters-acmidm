@@ -5,7 +5,7 @@
     using System.Reflection;
     using Autofac;
     using Autofac.Extensions.DependencyInjection;
-    using Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions;
+    using Be.Vlaanderen.Basisregisters.AcmIdm;
     using Be.Vlaanderen.Basisregisters.Api;
     using IdentityModel.AspNetCore.OAuth2Introspection;
     using Microsoft.AspNetCore.Builder;
@@ -61,8 +61,8 @@
                         Authorization = options =>
                         {
                             options.AddAcmIdmAuthorization(
-                                "acm-idm-scopes",
-                                acmIdmPolicyOptions!.AllowedScopeValues.ToArray());
+                                PolicyNames.AcmIdmPolicy,
+                                acmIdmPolicyOptions!.AllowedScopeValues);
                         }
                     }
                 });

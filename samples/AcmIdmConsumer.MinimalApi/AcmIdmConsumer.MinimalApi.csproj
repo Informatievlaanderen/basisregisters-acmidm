@@ -3,7 +3,7 @@
   <Import Project="..\..\packages\Be.Vlaanderen.Basisregisters.Build.Pipeline\Content\Be.Vlaanderen.Basisregisters.Build.Pipeline.Settings.App.props" />
   
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions\Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions.csproj" />
+    <ProjectReference Include="..\..\src\Be.Vlaanderen.Basisregisters.AcmIdm\Be.Vlaanderen.Basisregisters.AcmIdm.csproj" />
   </ItemGroup>
   
   <ItemGroup>

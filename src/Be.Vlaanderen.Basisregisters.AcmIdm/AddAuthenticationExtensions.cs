@@ -1,4 +1,4 @@
-namespace Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions
+namespace Be.Vlaanderen.Basisregisters.AcmIdm
 {
     using IdentityModel.AspNetCore.OAuth2Introspection;
     using Microsoft.AspNetCore.Authentication;

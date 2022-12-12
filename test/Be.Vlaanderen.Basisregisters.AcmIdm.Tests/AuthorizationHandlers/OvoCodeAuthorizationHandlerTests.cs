@@ -3,7 +3,7 @@
     using System;
     using System.Security.Claims;
     using System.Threading.Tasks;
-    using Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions.AuthorizationHandlers;
+    using Be.Vlaanderen.Basisregisters.AcmIdm.AuthorizationHandlers;
     using FluentAssertions;
     using Microsoft.AspNetCore.Authorization;
     using Xunit;
@@ -46,7 +46,7 @@
 
             var user = new ClaimsPrincipal(
                 new ClaimsIdentity(
-                    new[] { new Claim(Abstractions.ClaimTypes.VoOrgCode, "OVO002068") },
+                    new[] { new Claim(AcmIdm.ClaimTypes.VoOrgCode, "OVO002068") },
                     "Bearer")
             );
             var context = new AuthorizationHandlerContext(
@@ -69,7 +69,7 @@
 
             var user = new ClaimsPrincipal(
                 new ClaimsIdentity(
-                    new[] { new Claim(Abstractions.ClaimTypes.VoOrgCode, expectedOvoCode) },
+                    new[] { new Claim(AcmIdm.ClaimTypes.VoOrgCode, expectedOvoCode) },
                     "Bearer")
             );
             var context = new AuthorizationHandlerContext(

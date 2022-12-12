@@ -1,4 +1,4 @@
-namespace Be.Vlaanderen.Basisregisters.AcmIdm.Abstractions;
+namespace Be.Vlaanderen.Basisregisters.AcmIdm;
 
 using System;
 using Microsoft.AspNetCore.Authorization;
