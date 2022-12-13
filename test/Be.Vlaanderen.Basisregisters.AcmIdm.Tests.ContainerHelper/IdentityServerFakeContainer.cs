@@ -1,6 +1,5 @@
 namespace Be.Vlaanderen.Basisregisters.AcmIdm.Tests.ContainerHelper
 {
-    using System;
     using System.IO;
     using Ductus.FluentDocker.Builders;
     using Ductus.FluentDocker.Services;
