@@ -8,8 +8,11 @@ namespace AcmIdmConsumer.MinimalApi
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Configuration;
 
-    public static class Program
+    public class Program
     {
+        protected Program()
+        { }
+
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);

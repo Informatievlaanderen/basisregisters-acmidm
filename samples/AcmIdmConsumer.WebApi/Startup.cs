@@ -1,4 +1,4 @@
-﻿namespace AcmIdmConsumer.WebApi
+namespace AcmIdmConsumer.WebApi
 {
     using System;
     using System.Linq;
@@ -29,10 +29,8 @@
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            var oAuth2IntrospectionOptions =
-                _configuration.GetSection(nameof(OAuth2IntrospectionOptions)).Get<OAuth2IntrospectionOptions>();
-            var acmIdmPolicyOptions =
-                _configuration.GetSection(nameof(AcmIdmPolicyOptions)).Get<AcmIdmPolicyOptions>();
+            var oAuth2IntrospectionOptions = _configuration.GetSection(nameof(OAuth2IntrospectionOptions)).Get<OAuth2IntrospectionOptions>();
+            var acmIdmPolicyOptions = _configuration.GetSection(nameof(AcmIdmPolicyOptions)).Get<AcmIdmPolicyOptions>();
 
             services.AddAcmIdmAuthentication(oAuth2IntrospectionOptions!);
 
