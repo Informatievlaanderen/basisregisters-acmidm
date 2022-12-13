@@ -86,9 +86,9 @@ jobs:
       run: |
         dotnet build --nologo --no-restore --no-incremental --configuration Debug basisregisters-acmidm.sln
 
-#    - name: Test
-#      shell: bash
-#      run: dotnet test --nologo --no-build basisregisters-acmidm.sln
+    - name: Test
+      shell: bash
+      run: dotnet test --nologo --no-build basisregisters-acmidm.sln
 
     - name: Sonar end build & analyze
       env:
