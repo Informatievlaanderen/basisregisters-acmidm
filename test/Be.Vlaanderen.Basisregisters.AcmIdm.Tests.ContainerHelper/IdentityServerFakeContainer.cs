@@ -1,4 +1,4 @@
-﻿namespace Be.Vlaanderen.Basisregisters.AcmIdm.Tests.ContainerHelper
+namespace Be.Vlaanderen.Basisregisters.AcmIdm.Tests.ContainerHelper
 {
     using System;
     using System.IO;
@@ -22,7 +22,7 @@
                 .UseCompose()
                 .FromFile(fileName)
                 .RemoveOrphans()
-                .WaitForPort(waitForService, $"{waitForPort}:{waitForProto}", Convert.ToInt64(timeoutMs))
+                //.WaitForPort(waitForService, $"{waitForPort}:{waitForProto}", Convert.ToInt64(timeoutMs))
                 .Build()
                 .Start();
         }
