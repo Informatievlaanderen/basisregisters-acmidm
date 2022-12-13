@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v1.0.0...v1.0.1) (2022-12-13)
+
+
+### Bug Fixes
+
+* make Program static ([bb6fea9](https://github.com/informatievlaanderen/basisregisters-acmidm/commit/bb6fea9c9b60ffc6ce58307ce94c26a6b2e88b11))
+
 # 1.0.0 (2022-12-13)
 
 
