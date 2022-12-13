@@ -1,6 +1,6 @@
-﻿namespace Be.Vlaanderen.Basisregisters.AcmIdm
+namespace Be.Vlaanderen.Basisregisters.AcmIdm
 {
-    public class Scopes
+    public static class Scopes
     {
         public const string VoInfo = "vo_info";
     }
