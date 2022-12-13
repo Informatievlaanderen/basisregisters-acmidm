@@ -8,7 +8,7 @@ namespace AcmIdmConsumer.MinimalApi
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Configuration;
 
-    public static class Program
+    public class Program
     {
         public static void Main(string[] args)
         {
