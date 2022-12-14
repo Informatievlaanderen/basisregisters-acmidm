@@ -24,7 +24,7 @@ namespace Be.Vlaanderen.Basisregisters.AcmIdm
                     optionalRequirements?.Invoke(policyBuilder);
                 });
 
-            services.AddSingleton<IAuthorizationHandler, RequiredScopesAuthorizationHandler>();
+            services.AddSingleton<IAuthorizationHandler, AcmIdmAuthorizationHandler>();
 
             return services;
         }
@@ -50,7 +50,7 @@ namespace Be.Vlaanderen.Basisregisters.AcmIdm
 
         public static AuthorizationPolicyBuilder AddAllowedScopeRequirement(
             this AuthorizationPolicyBuilder builder,
-            IEnumerable<string> allowedValues) => builder.AddRequirements(new RequiredScopesAuthorizationRequirement(allowedValues));
+            IEnumerable<string> allowedValues) => builder.AddRequirements(new AcmIdmAuthorizationRequirement(allowedValues));
 
         public static AuthorizationPolicyBuilder AddOvoCodeRequirement(
             this AuthorizationPolicyBuilder builder,

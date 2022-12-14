@@ -4,11 +4,11 @@ namespace Be.Vlaanderen.Basisregisters.AcmIdm.AuthorizationHandlers
     using System.Linq;
     using Microsoft.AspNetCore.Authorization;
 
-    public class RequiredScopesAuthorizationRequirement : IAuthorizationRequirement
+    public class AcmIdmAuthorizationRequirement : IAuthorizationRequirement
     {
         public IReadOnlyList<string> AllowedValues { get; }
 
-        public RequiredScopesAuthorizationRequirement(IEnumerable<string> allowedValues)
+        public AcmIdmAuthorizationRequirement(IEnumerable<string> allowedValues)
         {
             AllowedValues = allowedValues.ToList();
         }

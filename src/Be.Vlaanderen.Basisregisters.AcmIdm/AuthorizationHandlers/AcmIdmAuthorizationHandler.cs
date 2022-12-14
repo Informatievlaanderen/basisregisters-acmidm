@@ -4,11 +4,11 @@
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
 
-    public class RequiredScopesAuthorizationHandler : AuthorizationHandler<RequiredScopesAuthorizationRequirement>
+    public class AcmIdmAuthorizationHandler : AuthorizationHandler<AcmIdmAuthorizationRequirement>
     {
         protected override Task HandleRequirementAsync(
             AuthorizationHandlerContext context,
-            RequiredScopesAuthorizationRequirement requirement)
+            AcmIdmAuthorizationRequirement requirement)
         {
             if (requirement.AllowedValues.Any(
                     scope => context.User.HasClaim(x => x.Type == ClaimTypes.Scope && x.Value == scope)))
