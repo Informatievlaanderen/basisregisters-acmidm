@@ -21,7 +21,7 @@
             policy.Should().NotBeNull();
             policy!.Requirements.Should().ContainSingle();
 
-            var policyRequirement = policy.Requirements.Single() as RequiredScopesAuthorizationRequirement;
+            var policyRequirement = policy.Requirements.Single() as AcmIdmAuthorizationRequirement;
             policyRequirement.Should().NotBeNull();
             policyRequirement!.AllowedValues.Should().BeEquivalentTo(allowedValues);
         }

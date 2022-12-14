@@ -23,7 +23,7 @@
                 .AsSelf();
 
             // I think we should wrap this in an extension method.
-            _services.AddSingleton<IAuthorizationHandler, RequiredScopesAuthorizationHandler>();
+            _services.AddSingleton<IAuthorizationHandler, AcmIdmAuthorizationHandler>();
 
             builder.Populate(_services);
         }

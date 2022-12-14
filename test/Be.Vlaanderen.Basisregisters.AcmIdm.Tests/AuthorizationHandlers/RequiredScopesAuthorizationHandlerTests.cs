@@ -15,11 +15,11 @@
             "dv_gr_geschetstgebouw_uitzonderingen"
         };
 
-        private readonly RequiredScopesAuthorizationHandler _requiredScopesAuthorizationHandler;
+        private readonly AcmIdmAuthorizationHandler _acmIdmAuthorizationHandler;
 
         public RequiredScopesAuthorizationHandlerTests()
         {
-            _requiredScopesAuthorizationHandler = new RequiredScopesAuthorizationHandler();
+            _acmIdmAuthorizationHandler = new AcmIdmAuthorizationHandler();
         }
 
         [Fact]
@@ -35,12 +35,12 @@
                     "Bearer")
             );
             var context = new AuthorizationHandlerContext(
-                new IAuthorizationRequirement[] { new RequiredScopesAuthorizationRequirement(_allowedValues)},
+                new IAuthorizationRequirement[] { new AcmIdmAuthorizationRequirement(_allowedValues)},
                 user,
                 null);
 
             //Act
-            await _requiredScopesAuthorizationHandler.HandleAsync(context);
+            await _acmIdmAuthorizationHandler.HandleAsync(context);
 
             //Assert
             context.HasSucceeded.Should().BeTrue();
@@ -54,12 +54,12 @@
                 new ClaimsIdentity(Enumerable.Empty<Claim>())
             );
             var context = new AuthorizationHandlerContext(
-                new IAuthorizationRequirement[] { new RequiredScopesAuthorizationRequirement(_allowedValues) },
+                new IAuthorizationRequirement[] { new AcmIdmAuthorizationRequirement(_allowedValues) },
                 user,
                 null);
 
             //Act
-            await _requiredScopesAuthorizationHandler.HandleAsync(context);
+            await _acmIdmAuthorizationHandler.HandleAsync(context);
 
             //Assert
             context.HasSucceeded.Should().BeFalse();
