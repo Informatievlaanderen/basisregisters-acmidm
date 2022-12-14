@@ -9,7 +9,7 @@
     public class AddAuthorizationExtensionsTests
     {
         [Fact]
-        public void SetupRequiredScopesPolicy()
+        public void SetupAcmIdmAuthorizationPolicy()
         {
             const string policyName = "MyPolicy";
             var allowedValues = new[] { "dv_gr_geschetstgebouw_beheer", "dv_gr_geschetstgebouw_uitzonderingen" };
