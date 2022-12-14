@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v1.0.3...v1.1.0) (2022-12-14)
+
+
+### Features
+
+* expose AcmIdmPolicyOptions + rename AcmIdmAuthorizationHandler ([2cb7617](https://github.com/informatievlaanderen/basisregisters-acmidm/commit/2cb7617e145b4b5b2f2f5b8a108c4ebb064af0c5))
+
 ## [1.0.3](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v1.0.2...v1.0.3) (2022-12-14)
 
 
