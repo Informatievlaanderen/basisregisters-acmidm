@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v1.0.1...v1.0.2) (2022-12-14)
+
+
+### Bug Fixes
+
+* set token to github token ([4f4e713](https://github.com/informatievlaanderen/basisregisters-acmidm/commit/4f4e7138deaad893b12400ff490130bc9dacf6bc))
+
 ## [1.0.1](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v1.0.0...v1.0.1) (2022-12-13)
 
 
