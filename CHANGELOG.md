@@ -1,3 +1,12 @@
+## [1.0.3](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v1.0.2...v1.0.3) (2022-12-14)
+
+
+### Bug Fixes
+
+* dummy commit ([99201c2](https://github.com/informatievlaanderen/basisregisters-acmidm/commit/99201c28c05c90cc68c533a9a41657f2d1953997))
+* nuget ([b780530](https://github.com/informatievlaanderen/basisregisters-acmidm/commit/b780530fc5967aca4a87c14896c9e072746013b6))
+* use GITHUB_TOKEN ([f6c97b1](https://github.com/informatievlaanderen/basisregisters-acmidm/commit/f6c97b10fb11e211bb5f2f20a77e11e47ad34ce8))
+
 ## [1.0.2](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v1.0.1...v1.0.2) (2022-12-14)
 
 
