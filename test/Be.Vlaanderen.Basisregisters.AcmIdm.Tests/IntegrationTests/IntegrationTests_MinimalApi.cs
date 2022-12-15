@@ -17,14 +17,13 @@
         }
 
         [Theory]
-        [InlineData("dv_gr_geschetstgebouw_uitzonderingen")]
-        [InlineData("dv_gr_geschetstgebouw_beheer")]
-        public async Task GivenMinimalApi_WhenClientHasValidScopes_ThenRequestIsAuthorized(string scope)
+        [InlineData("dv_ar_adres_beheer")]
+        public async Task GivenMinimalApiSecretsEndpoint_WhenClientIsDecentraleBijwerker_ThenRequestIsAuthorized(string scopes)
         {
             var accessToken = await GetAccessToken(
                 ClientId,
                 ClientSecret,
-                scope);
+                scopes);
 
             var minimalApiHttpClient = RunMinimalApiSample().CreateClient();
             minimalApiHttpClient.DefaultRequestHeaders.Authorization =
@@ -36,19 +35,38 @@
         }
 
         [Theory]
-        [InlineData("another_scope")]
-        public async Task GivenMinimalApi_WhenClientHasNoneOfTheValidScopes_ThenRequestIsUnauthorized(string scope)
+        [InlineData("dv_ar_adres_beheer dv_ar_adres_uitzonderingen")]
+        public async Task GivenMinimalApiSecretsVeryEndpoint_WhenClientIsInterneBijwerker_ThenRequestIsAuthorized(string scopes)
         {
             var accessToken = await GetAccessToken(
                 ClientId,
                 ClientSecret,
-                scope);
+                scopes);
 
             var minimalApiHttpClient = RunMinimalApiSample().CreateClient();
             minimalApiHttpClient.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Bearer", accessToken);
 
-            var response = await minimalApiHttpClient.GetAsync("/secret");
+            var response = await minimalApiHttpClient.GetAsync("/secret/very");
+
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
+
+        [Theory]
+        [InlineData("dv_ar_adres_beheer")]
+        [InlineData("dv_ar_adres_uitzonderingen")]
+        public async Task GivenMinimalApiSecretsVeryEndpoint_WhenClientIsDecentraleBijwerker_ThenRequestIsUnauthorized(string scopes)
+        {
+            var accessToken = await GetAccessToken(
+                ClientId,
+                ClientSecret,
+                scopes);
+
+            var minimalApiHttpClient = RunMinimalApiSample().CreateClient();
+            minimalApiHttpClient.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", accessToken);
+
+            var response = await minimalApiHttpClient.GetAsync("/secret/very");
 
             response.StatusCode.Should().Be(HttpStatusCode.Forbidden);
         }

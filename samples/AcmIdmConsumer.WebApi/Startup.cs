@@ -62,9 +62,7 @@
                     {
                         Authorization = options =>
                         {
-                            options.AddAcmIdmAuthorization(
-                                PolicyNames.AcmIdmPolicy,
-                                acmIdmPolicyOptions.AllowedScopeValues!);
+                            options.AddAcmIdmAuthorization();
                         }
                     }
                 });

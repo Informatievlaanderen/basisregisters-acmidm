@@ -23,9 +23,8 @@
         }
 
         [Theory]
-        [InlineData("dv_gr_geschetstgebouw_uitzonderingen")]
-        [InlineData("dv_gr_geschetstgebouw_beheer")]
-        public async Task GivenWebApi_WhenClientHasValidScope_ThenRequestIsAuthorized(string scope)
+        [InlineData("dv_ar_adres_beheer")]
+        public async Task GivenWebApiSecretsEndpoint_WhenClientIsDecentraleBijwerker_ThenRequestIsAuthorized(string scope)
         {
             var accessToken = await GetAccessToken(
                 ClientId,
@@ -42,19 +41,38 @@
         }
 
         [Theory]
-        [InlineData("another_scope")]
-        public async Task GivenWebApi_WhenClientHasNoneOfTheValidScopes_ThenRequestIsUnauthorized(string scope)
+        [InlineData("dv_ar_adres_beheer dv_ar_adres_uitzonderingen")]
+        public async Task GivenWebApiSecretsVeryEndpoint_WhenClientIsInterneBijwerker_ThenRequestIsAuthorized(string scope)
         {
             var accessToken = await GetAccessToken(
                 ClientId,
                 ClientSecret,
                 scope);
 
-            var minimalApiHttpClient = RunWebApiSample().CreateClient();
-            minimalApiHttpClient.DefaultRequestHeaders.Authorization =
+            var webApiHttpClient = RunWebApiSample().CreateClient();
+            webApiHttpClient.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Bearer", accessToken);
 
-            var response = await minimalApiHttpClient.GetAsync("/v1/secret");
+            var response = await webApiHttpClient.GetAsync("/v1/secret/very");
+
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
+
+        [Theory]
+        [InlineData("dv_ar_adres_beheer")]
+        [InlineData("dv_ar_adres_uitzonderingen")]
+        public async Task GivenWebApiSecretsVeryEndpoint_WhenClientIsDecentraleBijwerker_ThenRequestIsUnauthorized(string scopes)
+        {
+            var accessToken = await GetAccessToken(
+                ClientId,
+                ClientSecret,
+                scopes);
+
+            var webApiHttpClient = RunWebApiSample().CreateClient();
+            webApiHttpClient.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", accessToken);
+
+            var response = await webApiHttpClient.GetAsync("/v1/secret/very");
 
             response.StatusCode.Should().Be(HttpStatusCode.Forbidden);
         }

@@ -2,6 +2,7 @@
 {
     public static class PolicyNames
     {
-        public const string AcmIdmPolicy = "acm-idm-scopes";
+        public const string AdresDecentraleBijwerker = "adres-decentrale-bijwerker";
+        public const string AdresInterneBijwerker = "adres-interne-bijwerker";
     }
 }

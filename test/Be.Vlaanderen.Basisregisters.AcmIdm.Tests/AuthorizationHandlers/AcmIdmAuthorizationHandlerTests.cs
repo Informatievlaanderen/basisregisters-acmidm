@@ -11,8 +11,8 @@
     public class RequiredScopesAuthorizationHandlerTests
     {
         private readonly string[] _allowedValues = {
-            "dv_gr_geschetstgebouw_beheer",
-            "dv_gr_geschetstgebouw_uitzonderingen"
+            "dv_ar_adres_beheer",
+            "dv_ar_adres_uitzonderingen"
         };
 
         private readonly AcmIdmAuthorizationHandler _acmIdmAuthorizationHandler;
@@ -29,7 +29,7 @@
             var user = new ClaimsPrincipal(
                 new ClaimsIdentity(
                     _allowedValues
-                        .Select(x => new Claim(AcmIdm.AcmIdmClaimTypes.Scope, x))
+                        .Select(x => new Claim(AcmIdmClaimTypes.Scope, x))
                         .Take(1)
                         .ToArray(),
                     "Bearer")

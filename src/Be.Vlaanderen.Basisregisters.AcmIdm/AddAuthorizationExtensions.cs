@@ -1,6 +1,5 @@
 namespace Be.Vlaanderen.Basisregisters.AcmIdm
 {
-    using System;
     using System.Collections.Generic;
     using AuthorizationHandlers;
     using Microsoft.AspNetCore.Authorization;
@@ -8,52 +7,71 @@ namespace Be.Vlaanderen.Basisregisters.AcmIdm
 
     public static class AddAuthorizationExtensions
     {
-        // used by minimal api without Be.Vlaanderen.Basisregisters.Api
-        public static IServiceCollection AddAcmIdmAuthorization(
-            this IServiceCollection services,
-            string policyName,
-            IEnumerable<string> allowedValues,
-            Action<AuthorizationPolicyBuilder>? optionalRequirements = null)
+        private static IServiceCollection AddAcmIdmPolicyAdresDecentraleBijwerker(this IServiceCollection services)
         {
             services
                 .AddAuthorizationBuilder()
-                .AddPolicy(policyName, policyBuilder =>
+                .AddPolicy(PolicyNames.AdresDecentraleBijwerker, policyBuilder =>
                 {
-                    policyBuilder.AddAllowedScopeRequirement(allowedValues);
-
-                    optionalRequirements?.Invoke(policyBuilder);
+                    policyBuilder.AddAllowedScopeRequirement(new[] { Scopes.DvArAdresBeheer });
                 });
+
+            return services;
+        }
+
+        private static IServiceCollection AddAcmIdmPolicyAdresInterneBijwerker(this IServiceCollection services)
+        {
+            services
+                .AddAuthorizationBuilder()
+                .AddPolicy(PolicyNames.AdresInterneBijwerker, policyBuilder =>
+                {
+                    policyBuilder.AddAllowedScopeRequirement(new[] { Scopes.DvArAdresUitzonderingen });
+                });
+
+            return services;
+        }
+
+        public static IServiceCollection AddAcmIdmAuthorization(this IServiceCollection services)
+        {
+            services
+                .AddAcmIdmPolicyAdresDecentraleBijwerker()
+                .AddAcmIdmPolicyAdresInterneBijwerker();
 
             services.AddSingleton<IAuthorizationHandler, AcmIdmAuthorizationHandler>();
 
             return services;
         }
 
-        // used by projects using Be.Vlaanderen.Basisregisters.Api
-        public static AuthorizationOptions AddAcmIdmAuthorization(
-            this AuthorizationOptions options,
-            string policyName,
-            IEnumerable<string> allowedValues,
-            Action<AuthorizationPolicyBuilder>? optionalRequirements = null)
+        public static AuthorizationOptions AddAcmIdmAuthorization(this AuthorizationOptions options)
         {
-            options.AddPolicy(
-                policyName,
-                policyBuilder =>
-                {
-                    policyBuilder.AddAllowedScopeRequirement(allowedValues ?? throw new ArgumentNullException(nameof(allowedValues)));
-
-                    optionalRequirements?.Invoke(policyBuilder);
-                });
+            options
+                .AddAcmIdmPolicyAdresDecentraleBijwerker()
+                .AddAcmIdmPolicyAdresInterneBijwerker();
 
             return options;
         }
 
-        public static AuthorizationPolicyBuilder AddAllowedScopeRequirement(
-            this AuthorizationPolicyBuilder builder,
-            IEnumerable<string> allowedValues) => builder.AddRequirements(new AcmIdmAuthorizationRequirement(allowedValues));
+        private static AuthorizationOptions AddAcmIdmPolicyAdresDecentraleBijwerker(this AuthorizationOptions options)
+        {
+            options.AddPolicy(
+                PolicyNames.AdresDecentraleBijwerker,
+                policyBuilder => { policyBuilder.AddAllowedScopeRequirement(new[] { Scopes.DvArAdresBeheer }); });
 
-        public static AuthorizationPolicyBuilder AddOvoCodeRequirement(
+            return options;
+        }
+
+        private static AuthorizationOptions AddAcmIdmPolicyAdresInterneBijwerker(this AuthorizationOptions options)
+        {
+            options.AddPolicy(
+                PolicyNames.AdresInterneBijwerker,
+                policyBuilder => { policyBuilder.AddAllowedScopeRequirement(new[] { Scopes.DvArAdresUitzonderingen }); });
+
+            return options;
+        }
+
+        private static AuthorizationPolicyBuilder AddAllowedScopeRequirement(
             this AuthorizationPolicyBuilder builder,
-            IOvoCodeValidator ovoCodeValidator) => builder.AddRequirements(new OvoCodeAuthorizationRequirement(ovoCodeValidator));
+            IEnumerable<string> allowedValues) =>
+            builder.AddRequirements(new AcmIdmAuthorizationRequirement(allowedValues));
     }
 }
