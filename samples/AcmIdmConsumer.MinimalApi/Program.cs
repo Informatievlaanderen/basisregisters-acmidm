@@ -32,7 +32,7 @@ namespace AcmIdmConsumer.MinimalApi
             }
 
             builder.Services.AddAcmIdmAuthentication(oAuth2IntrospectionOptions!);
-            builder.Services.AddAcmIdmAuthorization(PolicyNames.AcmIdmPolicy, acmIdmPolicyOptions.AllowedScopeValues!);
+            builder.Services.AddAcmIdmAuthorization();
 
             var app = builder.Build();
 
@@ -43,7 +43,17 @@ namespace AcmIdmConsumer.MinimalApi
                         .ForEach(x => Console.WriteLine($"{x.Type}: {x.Value}"));
                     return "Joow";
                 })
-                .RequireAuthorization(PolicyNames.AcmIdmPolicy);
+                .RequireAuthorization(PolicyNames.AdresDecentraleBijwerker);
+
+            app
+                .MapGet("/secret/very", (ClaimsPrincipal user) =>
+                {
+                    user.Claims.ToList()
+                        .ForEach(x => Console.WriteLine($"{x.Type}: {x.Value}"));
+                    return "Joow";
+                })
+                .RequireAuthorization(PolicyNames.AdresDecentraleBijwerker)
+                .RequireAuthorization(PolicyNames.AdresInterneBijwerker);
 
             app.UseAuthentication();
             app.UseAuthorization();

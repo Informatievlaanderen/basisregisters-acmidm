@@ -4,14 +4,14 @@
       "name": "dv",
       "displayName": "Digitaal Vlaanderen",
       "userClaims": [
-        "dv_gr_geschetstgebouw_beheer", 
-        "dv_gr_geschetstgebouw_uitzonderingen"
+        "dv_ar_adres_beheer",
+        "dv_ar_adres_uitzonderingen"
       ]
     }
   ],
   "apiScopes": [
-    "dv_gr_geschetstgebouw_beheer", 
-    "dv_gr_geschetstgebouw_uitzonderingen"
+    "dv_ar_adres_beheer",
+    "dv_ar_adres_uitzonderingen"
   ],
   "apiResources": [
     {
@@ -20,8 +20,8 @@
         "a_very=Secr3t*Key"
       ],
       "scopes": [
-        "dv_gr_geschetstgebouw_beheer", 
-        "dv_gr_geschetstgebouw_uitzonderingen"
+        "dv_ar_adres_beheer",
+        "dv_ar_adres_uitzonderingen"
       ]
     },
     {
@@ -30,8 +30,8 @@
         "a_very=Secr3t*Key"
       ],
       "scopes": [
-        "dv_gr_geschetstgebouw_beheer", 
-        "dv_gr_geschetstgebouw_uitzonderingen"
+        "dv_ar_adres_beheer",
+        "dv_ar_adres_uitzonderingen"
       ]
     }
   ],
@@ -43,8 +43,8 @@
       ],
       "allowedGrantTypes": "clientCredentials",
       "allowedScopes":[
-        "dv_gr_geschetstgebouw_beheer", 
-        "dv_gr_geschetstgebouw_uitzonderingen"
+        "dv_ar_adres_beheer",
+        "dv_ar_adres_uitzonderingen"
       ],
       "alwaysIncludeUserClaimsInIdToken": false,
       "accessTokenLifetime": -1,
