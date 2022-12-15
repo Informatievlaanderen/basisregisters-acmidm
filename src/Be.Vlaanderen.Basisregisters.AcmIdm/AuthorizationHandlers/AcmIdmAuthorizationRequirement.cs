@@ -1,8 +1,10 @@
 namespace Be.Vlaanderen.Basisregisters.AcmIdm.AuthorizationHandlers
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.IdentityModel.Tokens;
 
     public class AcmIdmAuthorizationRequirement : IAuthorizationRequirement
     {
@@ -10,7 +12,13 @@ namespace Be.Vlaanderen.Basisregisters.AcmIdm.AuthorizationHandlers
 
         public AcmIdmAuthorizationRequirement(IEnumerable<string> allowedValues)
         {
-            AllowedValues = allowedValues.ToList();
+            var allowedValuesList = allowedValues.ToList();
+            if (allowedValuesList.IsNullOrEmpty())
+            {
+                throw new ArgumentNullException(nameof(allowedValues));
+            }
+
+            AllowedValues = allowedValuesList;
         }
     }
 }

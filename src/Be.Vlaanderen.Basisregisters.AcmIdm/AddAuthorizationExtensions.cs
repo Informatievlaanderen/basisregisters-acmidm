@@ -40,7 +40,7 @@ namespace Be.Vlaanderen.Basisregisters.AcmIdm
                 policyName,
                 policyBuilder =>
                 {
-                    policyBuilder.AddAllowedScopeRequirement(allowedValues);
+                    policyBuilder.AddAllowedScopeRequirement(allowedValues ?? throw new ArgumentNullException(nameof(allowedValues)));
 
                     optionalRequirements?.Invoke(policyBuilder);
                 });
