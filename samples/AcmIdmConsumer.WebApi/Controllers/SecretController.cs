@@ -7,10 +7,10 @@ namespace AcmIdmConsumer.WebApi.Controllers
     using Microsoft.AspNetCore.Mvc;
 
     [ApiRoute("secret")]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = PolicyNames.AcmIdmPolicy)]
     public class SecretController : ControllerBase
     {
         [HttpGet]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = PolicyNames.AcmIdmPolicy)]
         public IActionResult Get()
         {
             return Ok("Hello");

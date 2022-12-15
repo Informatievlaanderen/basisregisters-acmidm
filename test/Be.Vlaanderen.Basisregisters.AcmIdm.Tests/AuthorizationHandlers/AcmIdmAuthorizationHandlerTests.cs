@@ -29,7 +29,7 @@
             var user = new ClaimsPrincipal(
                 new ClaimsIdentity(
                     _allowedValues
-                        .Select(x => new Claim(AcmIdm.ClaimTypes.Scope, x))
+                        .Select(x => new Claim(AcmIdm.AcmIdmClaimTypes.Scope, x))
                         .Take(1)
                         .ToArray(),
                     "Bearer")
