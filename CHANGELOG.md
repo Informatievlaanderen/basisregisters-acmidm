@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v1.1.1...v1.1.2) (2022-12-15)
+
+
+### Bug Fixes
+
+* remove dependency on Microsoft.IdentityModel.Tokens ([525dabf](https://github.com/informatievlaanderen/basisregisters-acmidm/commit/525dabf0992394e9aaf2841f2d4f2e49d60e648e))
+
 ## [1.1.1](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v1.1.0...v1.1.1) (2022-12-15)
 
 
