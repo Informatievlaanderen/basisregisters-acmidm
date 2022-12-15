@@ -15,6 +15,7 @@
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
+    using Microsoft.IdentityModel.Tokens;
     using Microsoft.OpenApi.Models;
 
     public class Startup
@@ -29,10 +30,12 @@
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            var oAuth2IntrospectionOptions =
-                _configuration.GetSection(nameof(OAuth2IntrospectionOptions)).Get<OAuth2IntrospectionOptions>();
-            var acmIdmPolicyOptions =
-                _configuration.GetSection(nameof(AcmIdmPolicyOptions)).Get<AcmIdmPolicyOptions>();
+            var oAuth2IntrospectionOptions = _configuration.GetSection(nameof(OAuth2IntrospectionOptions)).Get<OAuth2IntrospectionOptions>();
+            var acmIdmPolicyOptions = _configuration.GetSection(nameof(AcmIdmPolicyOptions)).Get<AcmIdmPolicyOptions>();
+            if (acmIdmPolicyOptions!.AllowedScopeValues.IsNullOrEmpty())
+            {
+                throw new ArgumentNullException(nameof(acmIdmPolicyOptions.AllowedScopeValues));
+            }
 
             services.AddAcmIdmAuthentication(oAuth2IntrospectionOptions!);
 
@@ -62,7 +65,7 @@
                         {
                             options.AddAcmIdmAuthorization(
                                 PolicyNames.AcmIdmPolicy,
-                                acmIdmPolicyOptions!.AllowedScopeValues);
+                                acmIdmPolicyOptions.AllowedScopeValues!);
                         }
                     }
                 });

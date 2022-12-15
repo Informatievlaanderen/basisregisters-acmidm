@@ -7,6 +7,7 @@ namespace AcmIdmConsumer.MinimalApi
     using IdentityModel.AspNetCore.OAuth2Introspection;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Configuration;
+    using Microsoft.IdentityModel.Tokens;
 
     public class Program
     {
@@ -24,13 +25,15 @@ namespace AcmIdmConsumer.MinimalApi
                 .AddEnvironmentVariables()
                 .AddCommandLine(args);
 
-            var oAuth2IntrospectionOptions =
-                builder.Configuration.GetSection(nameof(OAuth2IntrospectionOptions)).Get<OAuth2IntrospectionOptions>();
-            var acmIdmPolicyOptions =
-                builder.Configuration.GetSection(nameof(AcmIdmPolicyOptions)).Get<AcmIdmPolicyOptions>();
+            var oAuth2IntrospectionOptions = builder.Configuration.GetSection(nameof(OAuth2IntrospectionOptions)).Get<OAuth2IntrospectionOptions>();
+            var acmIdmPolicyOptions = builder.Configuration.GetSection(nameof(AcmIdmPolicyOptions)).Get<AcmIdmPolicyOptions>();
+            if (acmIdmPolicyOptions!.AllowedScopeValues.IsNullOrEmpty())
+            {
+                throw new ArgumentNullException(nameof(acmIdmPolicyOptions.AllowedScopeValues));
+            }
 
             builder.Services.AddAcmIdmAuthentication(oAuth2IntrospectionOptions!);
-            builder.Services.AddAcmIdmAuthorization(PolicyNames.AcmIdmPolicy, acmIdmPolicyOptions.AllowedScopeValues);
+            builder.Services.AddAcmIdmAuthorization(PolicyNames.AcmIdmPolicy, acmIdmPolicyOptions.AllowedScopeValues!);
 
             var app = builder.Build();
 
