@@ -46,7 +46,7 @@
 
             var user = new ClaimsPrincipal(
                 new ClaimsIdentity(
-                    new[] { new Claim(AcmIdm.ClaimTypes.VoOrgCode, "OVO002068") },
+                    new[] { new Claim(AcmIdm.AcmIdmClaimTypes.VoOrgCode, "OVO002068") },
                     "Bearer")
             );
             var context = new AuthorizationHandlerContext(
@@ -69,7 +69,7 @@
 
             var user = new ClaimsPrincipal(
                 new ClaimsIdentity(
-                    new[] { new Claim(AcmIdm.ClaimTypes.VoOrgCode, expectedOvoCode) },
+                    new[] { new Claim(AcmIdm.AcmIdmClaimTypes.VoOrgCode, expectedOvoCode) },
                     "Bearer")
             );
             var context = new AuthorizationHandlerContext(

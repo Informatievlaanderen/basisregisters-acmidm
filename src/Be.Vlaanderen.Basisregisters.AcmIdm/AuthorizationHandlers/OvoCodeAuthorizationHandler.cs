@@ -11,12 +11,12 @@
             AuthorizationHandlerContext context,
             OvoCodeAuthorizationRequirement requirement)
         {
-            if (!context.User.HasClaim(c => c.Type == ClaimTypes.VoOrgCode))
+            if (!context.User.HasClaim(c => c.Type == AcmIdmClaimTypes.VoOrgCode))
             {
                 return;
             }
 
-            var ovoCode = new OvoCode(context.User.Claims.Single(x => x.Type == ClaimTypes.VoOrgCode).Value);
+            var ovoCode = new OvoCode(context.User.Claims.Single(x => x.Type == AcmIdmClaimTypes.VoOrgCode).Value);
 
             try
             {
