@@ -4,7 +4,6 @@ namespace Be.Vlaanderen.Basisregisters.AcmIdm.AuthorizationHandlers
     using System.Collections.Generic;
     using System.Linq;
     using Microsoft.AspNetCore.Authorization;
-    using Microsoft.IdentityModel.Tokens;
 
     public class AcmIdmAuthorizationRequirement : IAuthorizationRequirement
     {

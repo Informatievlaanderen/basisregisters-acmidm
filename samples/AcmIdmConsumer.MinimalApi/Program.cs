@@ -7,7 +7,6 @@ namespace AcmIdmConsumer.MinimalApi
     using IdentityModel.AspNetCore.OAuth2Introspection;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Configuration;
-    using Microsoft.IdentityModel.Tokens;
 
     public class Program
     {
