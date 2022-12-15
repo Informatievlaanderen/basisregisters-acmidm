@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v1.1.0...v1.1.1) (2022-12-15)
+
+
+### Bug Fixes
+
+* don't initialize AcmIdmPolicyOptions.AllowedScopeValues ([13bf4d4](https://github.com/informatievlaanderen/basisregisters-acmidm/commit/13bf4d4d7e6e3e2ea66176e870f77c796f3c1866))
+
 # [1.1.0](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v1.0.3...v1.1.0) (2022-12-14)
 
 
