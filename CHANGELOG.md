@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v1.2.0...v1.3.0) (2022-12-16)
+
+
+### Features
+
+* add building policies ([43b6437](https://github.com/informatievlaanderen/basisregisters-acmidm/commit/43b6437f8ba33b6dc437faa0a40f9bb8f53185f8))
+
 # [1.2.0](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v1.1.2...v1.2.0) (2022-12-15)
 
 
