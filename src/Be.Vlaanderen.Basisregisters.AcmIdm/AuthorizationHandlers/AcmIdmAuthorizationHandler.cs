@@ -10,8 +10,8 @@
 
     public class AcmIdmAuthorizationHandler : AuthorizationHandler<AcmIdmAuthorizationRequirement>
     {
-        private static readonly ReadOnlyDictionary<string, string> _cache =
-            new ReadOnlyDictionary<string, string>(new Dictionary<string, string>(1000));
+        // Todo: is this type thread safe when making concurrent writes to the dictionary cache?
+        private static readonly ReadOnlyDictionary<string, string> Cache = new ReadOnlyDictionary<string, string>(new Dictionary<string, string>(1000));
 
         protected override Task HandleRequirementAsync(
             AuthorizationHandlerContext context,
@@ -37,8 +37,8 @@
                 return;
             }
 
-            var nisCodeClaim = _cache.ContainsKey(orgCodeClaim.Value)
-                ? _cache[orgCodeClaim.Value]
+            var nisCodeClaim = Cache.ContainsKey(orgCodeClaim.Value)
+                ? Cache[orgCodeClaim.Value]
                 : FetchNisCode(orgCodeClaim.Value);
 
             if (!context.User.Claims.Any(x => x.Type.Equals(AcmIdmClaimTypes.NisCode, StringComparison.InvariantCultureIgnoreCase)))

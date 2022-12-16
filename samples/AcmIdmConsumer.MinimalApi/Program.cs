@@ -25,11 +25,6 @@ namespace AcmIdmConsumer.MinimalApi
                 .AddCommandLine(args);
 
             var oAuth2IntrospectionOptions = builder.Configuration.GetSection(nameof(OAuth2IntrospectionOptions)).Get<OAuth2IntrospectionOptions>();
-            var acmIdmPolicyOptions = builder.Configuration.GetSection(nameof(AcmIdmPolicyOptions)).Get<AcmIdmPolicyOptions>();
-            if (acmIdmPolicyOptions!.AllowedScopeValues.IsNullOrEmpty())
-            {
-                throw new ArgumentNullException(nameof(acmIdmPolicyOptions.AllowedScopeValues));
-            }
 
             builder.Services.AddAcmIdmAuthentication(oAuth2IntrospectionOptions!);
             builder.Services.AddAcmIdmAuthorization();
@@ -43,7 +38,7 @@ namespace AcmIdmConsumer.MinimalApi
                         .ForEach(x => Console.WriteLine($"{x.Type}: {x.Value}"));
                     return "Joow";
                 })
-                .RequireAuthorization(PolicyNames.AdresDecentraleBijwerker);
+                .RequireAuthorization(PolicyNames.Adres.DecentraleBijwerker);
 
             app
                 .MapGet("/secret/very", (ClaimsPrincipal user) =>
@@ -52,8 +47,8 @@ namespace AcmIdmConsumer.MinimalApi
                         .ForEach(x => Console.WriteLine($"{x.Type}: {x.Value}"));
                     return "Joow";
                 })
-                .RequireAuthorization(PolicyNames.AdresDecentraleBijwerker)
-                .RequireAuthorization(PolicyNames.AdresInterneBijwerker);
+                .RequireAuthorization(PolicyNames.Adres.DecentraleBijwerker)
+                .RequireAuthorization(PolicyNames.Adres.InterneBijwerker);
 
             app.UseAuthentication();
             app.UseAuthorization();

@@ -1,5 +1,6 @@
 ﻿namespace Be.Vlaanderen.Basisregisters.AcmIdm.Tests.AuthorizationHandlers
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Security.Claims;
     using System.Threading.Tasks;
@@ -26,17 +27,9 @@
         public async Task WhenAtLeastOneScopesPresent_ThenAuthorized()
         {
             // Arrange
-            var user = new ClaimsPrincipal(
-                new ClaimsIdentity(
-                    _allowedValues
-                        .Select(x => new Claim(AcmIdmClaimTypes.Scope, x))
-                        .Take(1)
-                        .ToArray(),
-                    "Bearer")
-            );
             var context = new AuthorizationHandlerContext(
                 new IAuthorizationRequirement[] { new AcmIdmAuthorizationRequirement(_allowedValues)},
-                user,
+                CreateUser(_allowedValues.Take(1)),
                 null);
 
             //Act
@@ -50,12 +43,9 @@
         public async Task WhenNoneOfAllowedScopesPresent_ThenUnauthorized()
         {
             // Arrange
-            var user = new ClaimsPrincipal(
-                new ClaimsIdentity(Enumerable.Empty<Claim>())
-            );
             var context = new AuthorizationHandlerContext(
                 new IAuthorizationRequirement[] { new AcmIdmAuthorizationRequirement(_allowedValues) },
-                user,
+                CreateUser(_allowedValues.Take(0)),
                 null);
 
             //Act
@@ -63,6 +53,11 @@
 
             //Assert
             context.HasSucceeded.Should().BeFalse();
+        }
+
+        private ClaimsPrincipal CreateUser(IEnumerable<string> scopes)
+        {
+            return new ClaimsPrincipal(new ClaimsIdentity(scopes.Select(x => new Claim(AcmIdmClaimTypes.Scope, x)).ToArray(), "Bearer"));
         }
     }
 }
