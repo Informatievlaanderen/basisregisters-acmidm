@@ -30,11 +30,6 @@
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             var oAuth2IntrospectionOptions = _configuration.GetSection(nameof(OAuth2IntrospectionOptions)).Get<OAuth2IntrospectionOptions>();
-            var acmIdmPolicyOptions = _configuration.GetSection(nameof(AcmIdmPolicyOptions)).Get<AcmIdmPolicyOptions>();
-            if (acmIdmPolicyOptions!.AllowedScopeValues.IsNullOrEmpty())
-            {
-                throw new ArgumentNullException(nameof(acmIdmPolicyOptions.AllowedScopeValues));
-            }
 
             services.AddAcmIdmAuthentication(oAuth2IntrospectionOptions!);
 

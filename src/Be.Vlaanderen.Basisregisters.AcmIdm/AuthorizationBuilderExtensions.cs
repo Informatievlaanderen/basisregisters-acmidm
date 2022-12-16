@@ -1,9 +1,9 @@
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Be.Vlaanderen.Basisregisters.AcmIdm;
-
-public static class AuthorizationBuilderExtensions
+namespace Be.Vlaanderen.Basisregisters.AcmIdm
 {
-    public static AuthorizationBuilder AddAuthorizationBuilder(this IServiceCollection services)
-        => new AuthorizationBuilder(services.AddAuthorization());
+    public static class AuthorizationBuilderExtensions
+    {
+        public static AuthorizationBuilder AddAuthorizationBuilder(this IServiceCollection services) => new AuthorizationBuilder(services.AddAuthorization());
+    }
 }

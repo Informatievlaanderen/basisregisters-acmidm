@@ -12,7 +12,7 @@ namespace AcmIdmConsumer.WebApi.Controllers
     {
         [HttpGet]
         [ApiRoute("secret")]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = PolicyNames.AdresDecentraleBijwerker)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = PolicyNames.Adres.DecentraleBijwerker)]
         public IActionResult Get()
         {
             HttpContext.User.Claims.ToList().ForEach(x => Console.WriteLine($"{x.Type}: {x.Value}"));
@@ -21,8 +21,8 @@ namespace AcmIdmConsumer.WebApi.Controllers
 
         [HttpGet]
         [ApiRoute("secret/very")]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = PolicyNames.AdresDecentraleBijwerker)]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = PolicyNames.AdresInterneBijwerker)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = PolicyNames.Adres.DecentraleBijwerker)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = PolicyNames.Adres.InterneBijwerker)]
         public IActionResult GetVerySecret()
         {
             HttpContext.User.Claims.ToList().ForEach(x => Console.WriteLine($"{x.Type}: {x.Value}"));

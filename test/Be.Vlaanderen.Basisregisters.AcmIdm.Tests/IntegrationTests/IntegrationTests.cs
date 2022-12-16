@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
-    using System.Linq;
     using System.Net.Http;
     using System.Threading.Tasks;
     using ContainerHelper;
@@ -15,8 +14,8 @@
 
     public partial class IntegrationTests
     {
-        public const string ClientId = "acmClient";
-        public const string ClientSecret = "secret";
+        private const string ClientId = "acmClient";
+        private const string ClientSecret = "secret";
 
         private readonly IConfigurationRoot _configuration;
         private readonly OAuth2IntrospectionOptions _oAuth2IntrospectionOptions;
@@ -39,17 +38,16 @@
             var _ = IdentityServerFake.Value;
         }
 
-        private async Task<string> GetAccessToken(string clientId, string clientSecret, params string[] scopes)
+        private async Task<string> GetAccessToken(string scopes)
         {
             var tokenClient = new TokenClient(
                 () => new HttpClient(),
                 new TokenClientOptions
                 {
                     Address = $"{_oAuth2IntrospectionOptions.Authority}/connect/token",
-                    ClientId = clientId,
-                    ClientSecret = clientSecret,
-                    Parameters = new Parameters(
-                        scopes.Select(x => new KeyValuePair<string, string>("scope", x)))
+                    ClientId = ClientId,
+                    ClientSecret = ClientSecret,
+                    Parameters = new Parameters(new[] { new KeyValuePair<string, string>("scope", scopes) })
                 });
 
             var response = await tokenClient.RequestTokenAsync(OidcConstants.GrantTypes.ClientCredentials);
