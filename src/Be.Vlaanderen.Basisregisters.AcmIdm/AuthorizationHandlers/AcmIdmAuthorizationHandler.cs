@@ -10,7 +10,6 @@
 
     public class AcmIdmAuthorizationHandler : AuthorizationHandler<AcmIdmAuthorizationRequirement>
     {
-        // Todo: is this type thread safe when making concurrent writes to the dictionary cache?
         private static readonly ReadOnlyDictionary<string, string> Cache = new ReadOnlyDictionary<string, string>(new Dictionary<string, string>(1000));
 
         protected override Task HandleRequirementAsync(
