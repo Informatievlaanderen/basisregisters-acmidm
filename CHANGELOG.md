@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v1.3.0...v1.3.1) (2023-01-10)
+
+
+### Bug Fixes
+
+* integrate NisCodeService ([11c6943](https://github.com/informatievlaanderen/basisregisters-acmidm/commit/11c6943b29c57ade82c6d0bf01b6ffd6e306b567))
+
 # [1.3.0](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v1.2.0...v1.3.0) (2022-12-16)
 
 
