@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v1.3.1...v1.3.2) (2023-01-10)
+
+
+### Bug Fixes
+
+* check niscode claim presence before fetching from niscode-service ([36a87a2](https://github.com/informatievlaanderen/basisregisters-acmidm/commit/36a87a2b5a5452e54877e2ccf8b57171f0751cf7))
+
 ## [1.3.1](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v1.3.0...v1.3.1) (2023-01-10)
 
 
