@@ -39,11 +39,12 @@ namespace Be.Vlaanderen.Basisregisters.AcmIdm.AuthorizationHandlers
                 return;
             }
 
-            var nisCodeClaim = await FetchNisCode(orgCodeClaim.Value);
+            var nisCodeClaim = context.User.Claims.SingleOrDefault(x => x.Type == AcmIdmClaimTypes.NisCode) ??
+                new Claim(AcmIdmClaimTypes.NisCode, await FetchNisCode(orgCodeClaim.Value));
 
             if (!context.User.Claims.Any(x => x.Type.Equals(AcmIdmClaimTypes.NisCode, StringComparison.InvariantCultureIgnoreCase)))
             {
-                context.User.Identities.FirstOrDefault()?.AddClaim(new Claim(AcmIdmClaimTypes.NisCode, nisCodeClaim));
+                context.User.Identities.FirstOrDefault()?.AddClaim(nisCodeClaim);
             }
         }
 
