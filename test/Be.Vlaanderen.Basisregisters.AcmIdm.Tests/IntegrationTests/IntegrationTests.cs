@@ -1,4 +1,4 @@
-﻿namespace Be.Vlaanderen.Basisregisters.AcmIdm.Tests.IntegrationTests
+namespace Be.Vlaanderen.Basisregisters.AcmIdm.Tests.IntegrationTests
 {
     using System;
     using System.Collections.Generic;
@@ -21,7 +21,7 @@
         private readonly OAuth2IntrospectionOptions _oAuth2IntrospectionOptions;
 
         private static readonly Lazy<ICompositeService> IdentityServerFake =
-            new Lazy<ICompositeService>(() => IdentityServerFakeContainer.Compose());
+            new Lazy<ICompositeService>(IdentityServerFakeContainer.Compose);
 
         public IntegrationTests()
         {
