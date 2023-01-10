@@ -1,3 +1,11 @@
+## [1.3.3](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v1.3.2...v1.3.3) (2023-01-10)
+
+
+### Bug Fixes
+
+* add coverage to build.yml ([e00454a](https://github.com/informatievlaanderen/basisregisters-acmidm/commit/e00454a3ad932026d20e85cb7377ea9164a00d11))
+* dummy commit ([c767964](https://github.com/informatievlaanderen/basisregisters-acmidm/commit/c767964aa059cb8804ecfdde2355ffa408c7483d))
+
 ## [1.3.2](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v1.3.1...v1.3.2) (2023-01-10)
 
 
