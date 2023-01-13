@@ -22,7 +22,9 @@ namespace Be.Vlaanderen.Basisregisters.AcmIdm.AuthorizationHandlers
         {
             if (requirement.AllowedValues.Any(scope => context.User.HasClaim(x => x.Type == AcmIdmClaimTypes.Scope && x.Value == scope)))
             {
-                await AddNisCodeClaim(context);
+                // commented out to enable local debugging
+                // await AddNisCodeClaim(context);
+                await Task.Yield();
 
                 context.Succeed(requirement);
                 return;
@@ -40,7 +42,7 @@ namespace Be.Vlaanderen.Basisregisters.AcmIdm.AuthorizationHandlers
             }
 
             var nisCodeClaim = context.User.Claims.SingleOrDefault(x => x.Type == AcmIdmClaimTypes.NisCode) ??
-                new Claim(AcmIdmClaimTypes.NisCode, await FetchNisCode(orgCodeClaim.Value));
+                new Claim(AcmIdmClaimTypes.NisCode, await FetchNisCode(orgCodeClaim.Value) ?? string.Empty);
 
             if (!context.User.Claims.Any(x => x.Type.Equals(AcmIdmClaimTypes.NisCode, StringComparison.InvariantCultureIgnoreCase)))
             {
@@ -48,12 +50,11 @@ namespace Be.Vlaanderen.Basisregisters.AcmIdm.AuthorizationHandlers
             }
         }
 
-        private async Task<string> FetchNisCode(string orgCode)
+        private async Task<string?> FetchNisCode(string orgCode)
         {
             if (_nisCodeService is not null)
             {
-                var nisCodes = await _nisCodeService.GetAll();
-                return nisCodes[orgCode.WithoutOvoPrefix()!];
+                return (await _nisCodeService.Get(orgCode.WithoutOvoPrefix()!));
             }
 
             return string.Empty;
