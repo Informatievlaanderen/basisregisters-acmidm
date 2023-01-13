@@ -1,3 +1,10 @@
+## [1.3.4](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v1.3.3...v1.3.4) (2023-01-13)
+
+
+### Bug Fixes
+
+* disable NisCodeService to enable local debugging ([6ff0d04](https://github.com/informatievlaanderen/basisregisters-acmidm/commit/6ff0d04be5c47be1273bd793a890d478e9e80606))
+
 ## [1.3.3](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v1.3.2...v1.3.3) (2023-01-10)
 
 
