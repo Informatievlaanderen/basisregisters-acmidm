@@ -1,3 +1,11 @@
+## [1.3.5](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v1.3.4...v1.3.5) (2023-01-16)
+
+
+### Bug Fixes
+
+* lock dependencies in paket.template ([ec29a29](https://github.com/informatievlaanderen/basisregisters-acmidm/commit/ec29a2946e0daebbba8533a8b7824444d8321792))
+* lock dependencies in paket.template ([b97bb60](https://github.com/informatievlaanderen/basisregisters-acmidm/commit/b97bb602a0370e36420505784964d20b4fa29a5a))
+
 ## [1.3.4](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v1.3.3...v1.3.4) (2023-01-13)
 
 
