@@ -19,7 +19,7 @@ dependencies
     Microsoft.AspNetCore.Authentication.JwtBearer = LOCKEDVERSION
     IdentityModel.AspNetCore.OAuth2Introspection = LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.NisCodeService.Abstractions = LOCKEDVERSION
-    Be.Vlaanderen.Basisregisters.NisCodeService.Proxy.HttpProxy = LOCKEDVERSION
+    Be.Vlaanderen.Basisregisters.NisCodeService.Proxy.HttpProxy = LOCKEDVERSION 
 
 
 files
