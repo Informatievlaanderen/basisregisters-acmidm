@@ -1,8 +1,8 @@
 version: '3'
 services:
-   acmidm:
+   acmidm-test:
      image: ghcr.io/informatievlaanderen/identity-server-fake:ecac65a
      volumes:
        - ./identityserver:/home/identityserver
      ports:
-       - "5051:80"
+       - "5052:80"

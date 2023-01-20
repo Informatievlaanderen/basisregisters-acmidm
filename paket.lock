@@ -172,6 +172,8 @@ NUGET
       Be.Vlaanderen.Basisregisters.DataDog.Tracing (5.0)
       SqlStreamStore.MsSql (>= 1.2)
       System.Data.Common (>= 4.3)
+    Be.Vlaanderen.Basisregisters.DockerUtilities (1.0.1)
+      Ductus.FluentDocker (>= 2.10.57)
     Be.Vlaanderen.Basisregisters.EventHandling (4.2)
       Be.Vlaanderen.Basisregisters.Converters.TrimString (>= 3.0)
       Newtonsoft.Json (>= 13.0.1)
