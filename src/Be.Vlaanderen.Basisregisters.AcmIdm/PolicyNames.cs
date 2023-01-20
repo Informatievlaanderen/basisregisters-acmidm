@@ -1,4 +1,4 @@
-﻿namespace Be.Vlaanderen.Basisregisters.AcmIdm
+namespace Be.Vlaanderen.Basisregisters.AcmIdm
 {
     public static class PolicyNames
     {
@@ -19,6 +19,26 @@
         {
             public const string GrbBijwerker = "ingemeten-gebouw-grb-bijwerker";
             public const string InterneBijwerker = "ingemeten-gebouw-interne-bijwerker";
+        }
+
+        public static class GeschetsteWeg
+        {
+            public const string Beheerder = "wegen-geschetste-weg-beheerder";
+        }
+
+        public static class IngemetenWeg
+        {
+            public const string Beheerder = "wegen-ingemeten-weg-beheerder";
+        }
+
+        public static class WegenAttribuutWaarden
+        {
+            public const string Beheerder = "wegen-attribuutwaarden-beheerder";
+        }
+
+        public static class WegenUitzonderingen
+        {
+            public const string Beheerder = "wegen-uitzonderingen-beheerder";
         }
     }
 }

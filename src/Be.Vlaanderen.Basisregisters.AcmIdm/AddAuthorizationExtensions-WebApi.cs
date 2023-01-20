@@ -15,7 +15,11 @@ namespace Be.Vlaanderen.Basisregisters.AcmIdm
                 .AddAcmIdmPolicyGeschetstGebouwOmgeving()
                 .AddAcmIdmPolicyGeschetstGebouwInterneBijwerker()
                 .AddAcmIdmPolicyIngemetenGebouwGrbBijwerker()
-                .AddAcmIdmPolicyIngemetenGebouwInterneBijwerker();
+                .AddAcmIdmPolicyIngemetenGebouwInterneBijwerker()
+                .AddAcmIdmPolicyGeschetsteWegBeheerder()
+                .AddAcmIdmPolicyIngemetenWegBeheerder()
+                .AddAcmIdmPolicyWegenAttribuutWaardenBeheerder()
+                .AddAcmIdmPolicyWegenUitzonderingenBeheerder();
 
             return options;
         }
@@ -58,6 +62,26 @@ namespace Be.Vlaanderen.Basisregisters.AcmIdm
         private static AuthorizationOptions AddAcmIdmPolicyIngemetenGebouwInterneBijwerker(this AuthorizationOptions authorizationOptions)
         {
             return authorizationOptions.AddPolicy(PolicyNames.IngemetenGebouw.InterneBijwerker, Scopes.DvGrIngemetengebouwUitzonderingen);
+        }
+
+        private static AuthorizationOptions AddAcmIdmPolicyGeschetsteWegBeheerder(this AuthorizationOptions authorizationOptions)
+        {
+            return authorizationOptions.AddPolicy(PolicyNames.GeschetsteWeg.Beheerder, Scopes.DvWrGeschetsteWegBeheer);
+        }
+
+        private static AuthorizationOptions AddAcmIdmPolicyIngemetenWegBeheerder(this AuthorizationOptions authorizationOptions)
+        {
+            return authorizationOptions.AddPolicy(PolicyNames.IngemetenWeg.Beheerder, Scopes.DvWrIngemetenWegBeheer);
+        }
+
+        private static AuthorizationOptions AddAcmIdmPolicyWegenAttribuutWaardenBeheerder(this AuthorizationOptions authorizationOptions)
+        {
+            return authorizationOptions.AddPolicy(PolicyNames.WegenAttribuutWaarden.Beheerder, Scopes.DvWrAttribuutWaardenBeheer);
+        }
+
+        private static AuthorizationOptions AddAcmIdmPolicyWegenUitzonderingenBeheerder(this AuthorizationOptions authorizationOptions)
+        {
+            return authorizationOptions.AddPolicy(PolicyNames.WegenUitzonderingen.Beheerder, Scopes.DvWrUitzonderingenBeheer);
         }
 
         private static AuthorizationOptions AddPolicy(this AuthorizationOptions options, string policyName, string scope)
