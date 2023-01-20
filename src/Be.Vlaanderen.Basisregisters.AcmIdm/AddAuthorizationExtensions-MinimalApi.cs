@@ -16,7 +16,11 @@ namespace Be.Vlaanderen.Basisregisters.AcmIdm
                 .AddAcmIdmPolicyGeschetstGebouwOmgeving()
                 .AddAcmIdmPolicyGeschetstGebouwInterneBijwerker()
                 .AddAcmIdmPolicyIngemetenGebouwGrbBijwerker()
-                .AddAcmIdmPolicyIngemetenGebouwInterneBijwerker();
+                .AddAcmIdmPolicyIngemetenGebouwInterneBijwerker()
+                .AddAcmIdmPolicyGeschetsteWegBeheerder()
+                .AddAcmIdmPolicyIngemetenWegBeheerder()
+                .AddAcmIdmPolicyWegenAttribuutWaardenBeheerder()
+                .AddAcmIdmPolicyWegenUitzonderingenBeheerder();
 
             services.AddSingleton<IAuthorizationHandler, AcmIdmAuthorizationHandler>();
 
@@ -56,6 +60,26 @@ namespace Be.Vlaanderen.Basisregisters.AcmIdm
         private static AuthorizationBuilder AddAcmIdmPolicyIngemetenGebouwInterneBijwerker(this AuthorizationBuilder authorizationBuilder)
         {
             return authorizationBuilder.AddPolicy(PolicyNames.IngemetenGebouw.InterneBijwerker, Scopes.DvGrIngemetengebouwUitzonderingen);
+        }
+
+        private static AuthorizationBuilder AddAcmIdmPolicyGeschetsteWegBeheerder(this AuthorizationBuilder authorizationBuilder)
+        {
+            return authorizationBuilder.AddPolicy(PolicyNames.GeschetsteWeg.Beheerder, Scopes.DvWrGeschetsteWegBeheer);
+        }
+
+        private static AuthorizationBuilder AddAcmIdmPolicyIngemetenWegBeheerder(this AuthorizationBuilder authorizationBuilder)
+        {
+            return authorizationBuilder.AddPolicy(PolicyNames.IngemetenWeg.Beheerder, Scopes.DvWrIngemetenWegBeheer);
+        }
+
+        private static AuthorizationBuilder AddAcmIdmPolicyWegenAttribuutWaardenBeheerder(this AuthorizationBuilder authorizationBuilder)
+        {
+            return authorizationBuilder.AddPolicy(PolicyNames.WegenAttribuutWaarden.Beheerder, Scopes.DvWrAttribuutWaardenBeheer);
+        }
+
+        private static AuthorizationBuilder AddAcmIdmPolicyWegenUitzonderingenBeheerder(this AuthorizationBuilder authorizationBuilder)
+        {
+            return authorizationBuilder.AddPolicy(PolicyNames.WegenUitzonderingen.Beheerder, Scopes.DvWrUitzonderingenBeheer);
         }
 
         private static AuthorizationBuilder AddPolicy(this AuthorizationBuilder authorizationBuilder, string policyName, string scope)

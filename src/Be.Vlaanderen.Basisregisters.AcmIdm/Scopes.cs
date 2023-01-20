@@ -13,5 +13,10 @@ namespace Be.Vlaanderen.Basisregisters.AcmIdm
         public const string DvArAdresBeheer = "dv_ar_adres_beheer";
         public const string DvArAdresUitzonderingen = "dv_ar_adres_uitzonderingen";
 
+        public const string DvWrGeschetsteWegBeheer = "dv_wr_geschetsteweg_beheer";
+        public const string DvWrIngemetenWegBeheer = "dv_wr_ingemetenweg_beheer";
+        public const string DvWrAttribuutWaardenBeheer = "dv_wr_attribuutwaarden_beheer";
+        public const string DvWrUitzonderingenBeheer = "dv_wr_uitzonderingen";
+
     }
 }
