@@ -5,4 +5,4 @@ FluentAssertions
 Moq
 Microsoft.AspNetCore.Mvc.Testing
 Microsoft.AspNetCore.TestHost
-Ductus.FluentDocker
+Be.Vlaanderen.Basisregisters.DockerUtilities
