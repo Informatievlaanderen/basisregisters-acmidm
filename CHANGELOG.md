@@ -1,3 +1,10 @@
+## [1.3.6](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v1.3.5...v1.3.6) (2023-03-31)
+
+
+### Bug Fixes
+
+* add road-registry scopes ([614746c](https://github.com/informatievlaanderen/basisregisters-acmidm/commit/614746cacc2a96adbf6cdb2402357e7bfe56c29e))
+
 ## [1.3.5](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v1.3.4...v1.3.5) (2023-01-16)
 
 
