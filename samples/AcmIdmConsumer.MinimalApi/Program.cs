@@ -3,7 +3,7 @@ namespace AcmIdmConsumer.MinimalApi
     using System;
     using System.Linq;
     using System.Security.Claims;
-    using Be.Vlaanderen.Basisregisters.AcmIdm;
+    using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
     using IdentityModel.AspNetCore.OAuth2Introspection;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Configuration;

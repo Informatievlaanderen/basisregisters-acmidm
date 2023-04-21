@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Be.Vlaanderen.Basisregisters.AcmIdm", "src\Be.Vlaanderen.Basisregisters.AcmIdm\Be.Vlaanderen.Basisregisters.AcmIdm.csproj", "{4B2BB0C0-7162-43BF-9B58-8B1773435626}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Be.Vlaanderen.Basisregisters.Auth.AcmIdm", "src\Be.Vlaanderen.Basisregisters.Auth.AcmIdm\Be.Vlaanderen.Basisregisters.Auth.AcmIdm.csproj", "{4B2BB0C0-7162-43BF-9B58-8B1773435626}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D4FF36A3-8219-429F-9E74-845031115A7A}"
 EndProject
@@ -17,13 +17,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{B5EBD44D-0708-49BB-A820-778F9C1A4319}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Be.Vlaanderen.Basisregisters.AcmIdm.Tests", "test\Be.Vlaanderen.Basisregisters.AcmIdm.Tests\Be.Vlaanderen.Basisregisters.AcmIdm.Tests.csproj", "{78A4AD4A-BC34-449E-8B2B-F2D17F19688E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Be.Vlaanderen.Basisregisters.Auth.Tests", "test\Be.Vlaanderen.Basisregisters.Auth.Tests\Be.Vlaanderen.Basisregisters.Auth.Tests.csproj", "{78A4AD4A-BC34-449E-8B2B-F2D17F19688E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{1BB295E7-547A-4835-A20E-6C79D2618BD8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcmIdmConsumer.MinimalApi", "samples\AcmIdmConsumer.MinimalApi\AcmIdmConsumer.MinimalApi.csproj", "{FFB8BC20-5611-4332-BEBA-57C3A3216C10}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcmIdmConsumer.WebApi", "samples\AcmIdmConsumer.WebApi\AcmIdmConsumer.WebApi.csproj", "{12E3AD17-2D81-485E-89C8-875CC323A254}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Be.Vlaanderen.Basisregisters.Auth", "src\Be.Vlaanderen.Basisregisters.Auth\Be.Vlaanderen.Basisregisters.Auth.csproj", "{5254D922-8A1D-44D8-A3AF-1EFB4BB9A676}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,7 @@ Global
 		{78A4AD4A-BC34-449E-8B2B-F2D17F19688E} = {B5EBD44D-0708-49BB-A820-778F9C1A4319}
 		{FFB8BC20-5611-4332-BEBA-57C3A3216C10} = {1BB295E7-547A-4835-A20E-6C79D2618BD8}
 		{12E3AD17-2D81-485E-89C8-875CC323A254} = {1BB295E7-547A-4835-A20E-6C79D2618BD8}
+		{5254D922-8A1D-44D8-A3AF-1EFB4BB9A676} = {D4FF36A3-8219-429F-9E74-845031115A7A}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{4B2BB0C0-7162-43BF-9B58-8B1773435626}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -53,5 +56,9 @@ Global
 		{12E3AD17-2D81-485E-89C8-875CC323A254}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12E3AD17-2D81-485E-89C8-875CC323A254}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12E3AD17-2D81-485E-89C8-875CC323A254}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5254D922-8A1D-44D8-A3AF-1EFB4BB9A676}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5254D922-8A1D-44D8-A3AF-1EFB4BB9A676}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5254D922-8A1D-44D8-A3AF-1EFB4BB9A676}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5254D922-8A1D-44D8-A3AF-1EFB4BB9A676}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

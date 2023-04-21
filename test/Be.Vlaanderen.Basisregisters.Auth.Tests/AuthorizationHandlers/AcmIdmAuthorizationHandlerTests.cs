@@ -1,10 +1,11 @@
-﻿namespace Be.Vlaanderen.Basisregisters.AcmIdm.Tests.AuthorizationHandlers
+﻿namespace Be.Vlaanderen.Basisregisters.Auth.Tests.AuthorizationHandlers
 {
     using System.Collections.Generic;
     using System.Linq;
     using System.Security.Claims;
     using System.Threading.Tasks;
-    using Be.Vlaanderen.Basisregisters.AcmIdm.AuthorizationHandlers;
+    using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
+    using Be.Vlaanderen.Basisregisters.Auth.AcmIdm.AuthorizationHandlers;
     using FluentAssertions;
     using Microsoft.AspNetCore.Authorization;
     using Xunit;

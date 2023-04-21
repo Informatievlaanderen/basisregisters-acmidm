@@ -4,7 +4,7 @@ ACM/IDM utilities for C#
 Adds authentication and authorization to your ASP.NET API following the OAuth2 Client Credentials Grant using [ACM/IDM](https://overheid.vlaanderen.be/acm/idm-standaard-aansluitingsproces) as identity provider. 
 More information of the OAuth2 flow implemented can be found [here](https://authenticatie.vlaanderen.be/docs/beveiligen-van-api/oauth-rest/rest-server2server/) (Dutch). 
 
-https://www.nuget.org/packages?q=Be.Vlaanderen.Basisregisters.AcmIdm
+https://www.nuget.org/packages?q=Be.Vlaanderen.Basisregisters.Auth.AcmIdm
 
 # How to use?
 
@@ -40,7 +40,7 @@ On your mapped HTTP methods, you can then call `RequireAuthorization(PolicyNames
 
 The repository includes two `docker-compose` files. The first is located at the root of the repo and is used to manually test the above described samples. 
 
-The second `docker-compose` file is located under `test\Be.Vlaanderen.Basisregisters.AcmIdm.Tests.ContainerHelper` under the name `identityserverfake_test.yml`. This file is used to run the integration tests. 
+The second `docker-compose` file is located under `test\Be.Vlaanderen.Basisregisters.Auth.Tests.ContainerHelper` under the name `identityserverfake_test.yml`. This file is used to run the integration tests. 
 
 Both files run a docker image provided by the [identity-server-fake
 ](https://github.com/Informatievlaanderen/identity-server-fake) repo. The fake identity server is configured by the acm.json files under \identityserver next to the `docker-compose` files.

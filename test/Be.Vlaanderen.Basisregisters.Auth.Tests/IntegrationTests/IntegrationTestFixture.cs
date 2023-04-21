@@ -1,4 +1,4 @@
-﻿namespace Be.Vlaanderen.Basisregisters.AcmIdm.Tests.IntegrationTests
+﻿namespace Be.Vlaanderen.Basisregisters.Auth.Tests.IntegrationTests
 {
     using System;
     using System.Collections.Generic;
@@ -7,7 +7,7 @@
     using System.Net.Http.Headers;
     using System.Threading.Tasks;
     using AcmIdmConsumer.WebApi;
-    using DockerUtilities;
+    using Be.Vlaanderen.Basisregisters.DockerUtilities;
     using Ductus.FluentDocker.Services;
     using IdentityModel;
     using IdentityModel.AspNetCore.OAuth2Introspection;

@@ -29,16 +29,16 @@ supportedRuntimeIdentifiers <- [ "linux-x64" ]
 
 // Library ------------------------------------------------------------------------
 Target.create "Lib_Build" (fun _ ->
-    buildSolution "basisregisters-acmidm"
+    buildSolution "Be.Vlaanderen.Basisregisters.Auth"
 )
 
-Target.create "Test_Solution" (fun _ -> test "basisregisters-acmidm")
+Target.create "Test_Solution" (fun _ -> test "Be.Vlaanderen.Basisregisters.Auth")
 
 Target.create "Lib_Publish" (fun _ ->
-    publishSource "Be.Vlaanderen.Basisregisters.AcmIdm"
+    publishSource "Be.Vlaanderen.Basisregisters.Auth.AcmIdm"
 )
 
-Target.create "Lib_Pack" (fun _ -> pack "Be.Vlaanderen.Basisregisters.AcmIdm")
+Target.create "Lib_Pack" (fun _ -> pack "Be.Vlaanderen.Basisregisters.Auth.AcmIdm")
 
 // --------------------------------------------------------------------------------
 Target.create "PublishAll" ignore

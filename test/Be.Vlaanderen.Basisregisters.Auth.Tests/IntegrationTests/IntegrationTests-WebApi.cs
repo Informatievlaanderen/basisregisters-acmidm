@@ -1,4 +1,4 @@
-﻿namespace Be.Vlaanderen.Basisregisters.AcmIdm.Tests.IntegrationTests
+﻿namespace Be.Vlaanderen.Basisregisters.Auth.Tests.IntegrationTests
 {
     using System.Net;
     using System.Threading.Tasks;
