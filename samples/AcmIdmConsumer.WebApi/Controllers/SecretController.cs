@@ -2,8 +2,8 @@ namespace AcmIdmConsumer.WebApi.Controllers
 {
     using System;
     using System.Linq;
-    using Be.Vlaanderen.Basisregisters.AcmIdm;
     using Be.Vlaanderen.Basisregisters.Api;
+    using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;

@@ -1,4 +1,4 @@
-namespace Be.Vlaanderen.Basisregisters.AcmIdm.AuthorizationHandlers
+namespace Be.Vlaanderen.Basisregisters.Auth.AcmIdm.AuthorizationHandlers
 {
     using System;
     using System.Collections.Generic;

@@ -1,7 +1,8 @@
-namespace Be.Vlaanderen.Basisregisters.AcmIdm
+namespace Be.Vlaanderen.Basisregisters.Auth.AcmIdm
 {
     public static class Scopes
     {
+        public const string Vo = "vo";
         public const string VoInfo = "vo_info";
 
         public const string DvGrIngemetengebouwBeheer = "dv_gr_ingemetengebouw_beheer";

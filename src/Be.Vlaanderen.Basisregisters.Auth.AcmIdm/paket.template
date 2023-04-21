@@ -1,8 +1,8 @@
 type file
 version 1.0.0
 
-id Be.Vlaanderen.Basisregisters.AcmIdm
-title Be.Vlaanderen.Basisregisters.AcmIdm
+id Be.Vlaanderen.Basisregisters.Auth.AcmIdm
+title Be.Vlaanderen.Basisregisters.Auth.AcmIdm
 
 authors Basisregisters Vlaanderen
 owners Digitaal Vlaanderen <https://vlaanderen.be/digitaal-vlaanderen>
@@ -12,16 +12,17 @@ projectUrl https://github.com/Informatievlaanderen/basisregisters-acmidm
 iconUrl https://raw.githubusercontent.com/Informatievlaanderen/build-pipeline/master/logo.png
 licenseUrl https://opensource.org/licenses/MIT
 
-description ACM/IDM utilities for C#.
+description BasisRegisters Auth ACM/IDM utilities for C#.
 
 dependencies
   framework: net6.0
     Microsoft.AspNetCore.Authentication.JwtBearer = LOCKEDVERSION
     IdentityModel.AspNetCore.OAuth2Introspection = LOCKEDVERSION
     Be.Vlaanderen.Basisregisters.NisCodeService.Abstractions = LOCKEDVERSION
-    Be.Vlaanderen.Basisregisters.NisCodeService.Proxy.HttpProxy = LOCKEDVERSION 
-
+    Microsoft.Extensions.DependencyInjection = LOCKEDVERSION
 
 files
-  bin\Release\net6.0\Be.Vlaanderen.Basisregisters.AcmIdm.dll => lib\net6.0
-  bin\Release\net6.0\Be.Vlaanderen.Basisregisters.AcmIdm.pdb => lib\net6.0
+  bin\Release\net6.0\Be.Vlaanderen.Basisregisters.Auth.AcmIdm.dll => lib\net6.0
+  bin\Release\net6.0\Be.Vlaanderen.Basisregisters.Auth.AcmIdm.pdb => lib\net6.0
+  bin\Release\net6.0\Be.Vlaanderen.Basisregisters.Auth.dll => lib\net6.0
+  bin\Release\net6.0\Be.Vlaanderen.Basisregisters.Auth.pdb => lib\net6.0

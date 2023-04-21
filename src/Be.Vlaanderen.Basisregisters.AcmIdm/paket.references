@@ -1,8 +1,0 @@
-SourceLink.Embed.AllSourceFiles
-SourceLink.Copy.PdbFiles
-
-System.Configuration.ConfigurationManager
-Be.Vlaanderen.Basisregisters.NisCodeService.Abstractions
-Be.Vlaanderen.Basisregisters.NisCodeService.Proxy.HttpProxy
-Microsoft.AspNetCore.Authentication.JwtBearer
-IdentityModel.AspNetCore.OAuth2Introspection

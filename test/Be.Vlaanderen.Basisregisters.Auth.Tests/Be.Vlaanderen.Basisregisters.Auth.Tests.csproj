@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
+
   <Import Project="..\..\packages\Be.Vlaanderen.Basisregisters.Build.Pipeline\Content\Be.Vlaanderen.Basisregisters.Build.Pipeline.Settings.Test.props" />
   
   <ItemGroup>
     <ProjectReference Include="..\..\samples\AcmIdmConsumer.MinimalApi\AcmIdmConsumer.MinimalApi.csproj" />
     <ProjectReference Include="..\..\samples\AcmIdmConsumer.WebApi\AcmIdmConsumer.WebApi.csproj" />
-    <ProjectReference Include="..\..\src\Be.Vlaanderen.Basisregisters.AcmIdm\Be.Vlaanderen.Basisregisters.AcmIdm.csproj" />
+    <ProjectReference Include="..\..\src\Be.Vlaanderen.Basisregisters.Auth.AcmIdm\Be.Vlaanderen.Basisregisters.Auth.AcmIdm.csproj" />
   </ItemGroup>
   
   <ItemGroup>

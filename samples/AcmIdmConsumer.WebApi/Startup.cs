@@ -5,8 +5,8 @@
     using System.Reflection;
     using Autofac;
     using Autofac.Extensions.DependencyInjection;
-    using Be.Vlaanderen.Basisregisters.AcmIdm;
     using Be.Vlaanderen.Basisregisters.Api;
+    using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
     using IdentityModel.AspNetCore.OAuth2Introspection;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;

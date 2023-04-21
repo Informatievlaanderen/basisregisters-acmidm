@@ -1,4 +1,4 @@
-namespace Be.Vlaanderen.Basisregisters.AcmIdm
+namespace Be.Vlaanderen.Basisregisters.Auth.AcmIdm
 {
     using AuthorizationHandlers;
     using Microsoft.AspNetCore.Authorization;
