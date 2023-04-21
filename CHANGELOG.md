@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v1.3.6...v1.4.0) (2023-04-21)
+
+
+### Features
+
+* renamed packages using Auth and added niscode authorization ([b195677](https://github.com/informatievlaanderen/basisregisters-acmidm/commit/b195677799225c7d2a2293df75df1838b5ff9c1a))
+
 ## [1.3.6](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v1.3.5...v1.3.6) (2023-03-31)
 
 
