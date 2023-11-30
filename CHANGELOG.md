@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v1.4.0...v1.4.1) (2023-11-30)
+
+
+### Bug Fixes
+
+* dependencies ([2bec68b](https://github.com/informatievlaanderen/basisregisters-acmidm/commit/2bec68bba58012674ab00b94a6c60719f671e3d7))
+
 # [1.4.0](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v1.3.6...v1.4.0) (2023-04-21)
 
 
