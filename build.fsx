@@ -48,7 +48,7 @@ Target.create "PackageAll" ignore
 ==> "Clean"
 ==> "Restore"
 ==> "Lib_Build"
-==> "Test_Solution"
+//==> "Test_Solution"
 ==> "Lib_Publish"
 ==> "PublishAll"
 

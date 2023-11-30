@@ -16,10 +16,10 @@ description BasisRegisters Auth ACM/IDM utilities for C#.
 
 dependencies
   framework: net6.0
-    Microsoft.AspNetCore.Authentication.JwtBearer = LOCKEDVERSION
-    IdentityModel.AspNetCore.OAuth2Introspection = LOCKEDVERSION
-    Be.Vlaanderen.Basisregisters.NisCodeService.Abstractions = LOCKEDVERSION
-    Microsoft.Extensions.DependencyInjection = LOCKEDVERSION
+    Microsoft.AspNetCore.Authentication.JwtBearer >= LOCKEDVERSION
+    IdentityModel.AspNetCore.OAuth2Introspection >= LOCKEDVERSION
+    Be.Vlaanderen.Basisregisters.NisCodeService.Abstractions >= LOCKEDVERSION
+    Microsoft.Extensions.DependencyInjection >= LOCKEDVERSION
 
 files
   bin\Release\net6.0\Be.Vlaanderen.Basisregisters.Auth.AcmIdm.dll => lib\net6.0
