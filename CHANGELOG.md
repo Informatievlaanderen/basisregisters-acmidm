@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v1.4.1...v1.5.0) (2024-01-08)
+
+
+### Features
+
+* add HasScope and IsInterneBijwerker extensions ([408f2e5](https://github.com/informatievlaanderen/basisregisters-acmidm/commit/408f2e50c9e84078cf5db89d1d7d935ba7d0706e))
+
 ## [1.4.1](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v1.4.0...v1.4.1) (2023-11-30)
 
 
