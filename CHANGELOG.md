@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v1.5.0...v2.0.0) (2024-03-13)
+
+
+### Features
+
+* move to dotnet 8.0.2 ([d2381eb](https://github.com/informatievlaanderen/basisregisters-acmidm/commit/d2381ebeb3435e57317fcfb416345107945bb6a6))
+
+
+### BREAKING CHANGES
+
+* move to dotnet 8.0.2
+
 # [1.5.0](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v1.4.1...v1.5.0) (2024-01-08)
 
 
