@@ -1,10 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">   
   
-    <ItemGroup>
-      <ProjectReference Include="..\Be.Vlaanderen.Basisregisters.Auth\Be.Vlaanderen.Basisregisters.Auth.csproj" />
-    </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Be.Vlaanderen.Basisregisters.Auth\Be.Vlaanderen.Basisregisters.Auth.csproj" />
+  </ItemGroup>
 
-    <Import Project="..\..\packages\Be.Vlaanderen.Basisregisters.Build.Pipeline\Content\Be.Vlaanderen.Basisregisters.Build.Pipeline.Settings.Library.props" />
-    <Import Project="..\..\.paket\Paket.Restore.targets" />
+  <Import Project="..\..\packages\Be.Vlaanderen.Basisregisters.Build.Pipeline\Content\Be.Vlaanderen.Basisregisters.Build.Pipeline.Settings.Library.props" />
+
+  <ItemGroup>
+    <Content Include="paket.template" CopyToOutputDirectory="Always" />
+  </ItemGroup>
+
+  <Import Project="..\..\.paket\Paket.Restore.targets" />
 
 </Project>
