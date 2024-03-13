@@ -1,4 +1,4 @@
-# Basisregisters ACM/IDM
+# Basisregisters ACM/IDM [![Build Status](https://github.com/Informatievlaanderen/basisregister-acmidm/workflows/Build/badge.svg)](https://github.com/Informatievlaanderen/basisregisters-acmidm/actions)
 ACM/IDM utilities for C#
 
 Adds authentication and authorization to your ASP.NET API following the OAuth2 Client Credentials Grant using [ACM/IDM](https://overheid.vlaanderen.be/acm/idm-standaard-aansluitingsproces) as identity provider. 
