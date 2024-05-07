@@ -1,4 +1,4 @@
-﻿namespace Be.Vlaanderen.Basisregisters.Auth
+namespace Be.Vlaanderen.Basisregisters.Auth
 {
     using System.Collections.Generic;
     using Microsoft.Extensions.DependencyInjection;
@@ -14,9 +14,9 @@
                 .AddSingleton<INisCodeFinder<TId>, TFinder>();
         }
 
-        public static IServiceCollection AddOvoCodeWhiteList(this IServiceCollection services, IList<string>? ovoCodeWhiteList)
+        public static IServiceCollection AddOrganisationWhiteList(this IServiceCollection services, IList<string>? whiteList)
         {
-            return services.AddSingleton<IOvoCodeWhiteList>(new OvoCodeWhiteList(ovoCodeWhiteList));
+            return services.AddSingleton<IOrganisationWhiteList>(new OrganisationWhiteList(whiteList));
         }
     }
 }
