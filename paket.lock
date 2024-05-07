@@ -1,3 +1,4 @@
+STRATEGY: MIN
 RESTRICTION: == net8.0
 NUGET
   remote: https://api.nuget.org/v3/index.json
@@ -148,7 +149,7 @@ NUGET
     Be.Vlaanderen.Basisregisters.Aws.DistributedMutex (4.0.1)
       AWSSDK.DynamoDBv2 (>= 3.7.301.18)
       Microsoft.Extensions.Logging (>= 8.0)
-    Be.Vlaanderen.Basisregisters.Build.Pipeline (7.0.4)
+    Be.Vlaanderen.Basisregisters.Build.Pipeline (7.2.6)
     Be.Vlaanderen.Basisregisters.Converters.TrimString (4.0)
       Newtonsoft.Json (>= 13.0.3)
     Be.Vlaanderen.Basisregisters.DataDog.Tracing (6.0)

@@ -1,4 +1,4 @@
-﻿namespace Be.Vlaanderen.Basisregisters.Auth.Tests
+namespace Be.Vlaanderen.Basisregisters.Auth.Tests
 {
     using System.Security.Claims;
     using AcmIdm;
@@ -13,7 +13,8 @@
             User = new ClaimsPrincipal(new ClaimsIdentity(
                 new[]
                 {
-                    new Claim(AcmIdmClaimTypes.Scope, Scopes.DvArAdresUitzonderingen)
+                    new Claim(AcmIdmClaimTypes.Scope, Scopes.DvArAdresUitzonderingen),
+                    new Claim("vo_orgcode", "0643634986")
                 }))
         };
 
@@ -48,6 +49,12 @@
             };
 
             httpContext.IsInterneBijwerker().Should().BeFalse();
+        }
+
+        [Fact]
+        public void FindOrgCodeClaim()
+        {
+            _httpContext.FindOrgCodeClaim().Should().Be("0643634986");
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Be.Vlaanderen.Basisregisters.Auth.AcmIdm
+namespace Be.Vlaanderen.Basisregisters.Auth.AcmIdm
 {
     using System;
     using System.Collections.Generic;
@@ -14,12 +14,17 @@
             if (voOvoValue is not null)
                 return voOvoValue;
 
-            var voOrgValue = httpContext.User.FindFirst(AcmIdmClaimTypes.VoOrgCode)?.Value;
+            var voOrgValue = httpContext.FindOrgCodeClaim();
 
             if (voOrgValue is not null && voOrgValue.StartsWith("ovo", StringComparison.OrdinalIgnoreCase))
                 return voOrgValue;
 
             return null;
+        }
+
+        public static string? FindOrgCodeClaim(this HttpContext httpContext)
+        {
+            return httpContext.User.FindFirst(AcmIdmClaimTypes.VoOrgCode)?.Value;
         }
 
         public static bool HasScope(this HttpContext httpContext, string scope)
