@@ -13,16 +13,16 @@ namespace Be.Vlaanderen.Basisregisters.Auth
     {
         private readonly INisCodeFinder<T> _nisCodeFinder;
         private readonly INisCodeService _nisCodeService;
-        private readonly IOrganisationWhiteList? _organisationWhiteList;
+        private readonly IOvoCodeWhiteList? _ovoCodeWhiteList;
 
         public NisCodeAuthorizer(
             INisCodeFinder<T> nisCodeFinder,
             INisCodeService nisCodeService,
-            IOrganisationWhiteList? organisationWhiteList = null)
+            IOvoCodeWhiteList? ovoCodeWhiteList = null)
         {
             _nisCodeFinder = nisCodeFinder;
             _nisCodeService = nisCodeService;
-            _organisationWhiteList = organisationWhiteList;
+            _ovoCodeWhiteList = ovoCodeWhiteList;
         }
 
         public async Task<bool> IsAuthorized(string? ovoCode, T id, CancellationToken ct)
@@ -32,7 +32,7 @@ namespace Be.Vlaanderen.Basisregisters.Auth
                 return false;
             }
 
-            if (_organisationWhiteList is not null && _organisationWhiteList.IsWhiteListed(ovoCode))
+            if (_ovoCodeWhiteList is not null && _ovoCodeWhiteList.IsWhiteListed(ovoCode))
             {
                 return true;
             }

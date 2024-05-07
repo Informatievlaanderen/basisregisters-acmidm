@@ -14,6 +14,11 @@ namespace Be.Vlaanderen.Basisregisters.Auth
                 .AddSingleton<INisCodeFinder<TId>, TFinder>();
         }
 
+        public static IServiceCollection AddOvoCodeWhiteList(this IServiceCollection services, IList<string>? ovoCodeWhiteList)
+        {
+            return services.AddSingleton<IOvoCodeWhiteList>(new OvoCodeWhiteList(ovoCodeWhiteList));
+        }
+
         public static IServiceCollection AddOrganisationWhiteList(this IServiceCollection services, IList<string>? whiteList)
         {
             return services.AddSingleton<IOrganisationWhiteList>(new OrganisationWhiteList(whiteList));

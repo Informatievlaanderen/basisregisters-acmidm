@@ -1,4 +1,4 @@
-﻿namespace Be.Vlaanderen.Basisregisters.Auth.Tests
+namespace Be.Vlaanderen.Basisregisters.Auth.Tests
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -15,7 +15,7 @@
         private readonly NisCodeAuthorizer<int> _authorizer;
         private readonly Mock<INisCodeFinder<int>> _nisCodeFinder;
         private readonly Mock<INisCodeService> _nisCodeService;
-        private readonly Mock<IOrganisationWhiteList> _ovoCodeWhiteList;
+        private readonly Mock<IOvoCodeWhiteList> _ovoCodeWhiteList;
 
         private readonly IDictionary<string, string> _ovoCodeToNisCodes = new Dictionary<string, string>
         {
@@ -28,7 +28,7 @@
         {
             _nisCodeService = new Mock<INisCodeService>();
             _nisCodeFinder = new Mock<INisCodeFinder<int>>();
-            _ovoCodeWhiteList = new Mock<IOrganisationWhiteList>();
+            _ovoCodeWhiteList = new Mock<IOvoCodeWhiteList>();
             _authorizer = new NisCodeAuthorizer<int>(
                 _nisCodeFinder.Object,
                 _nisCodeService.Object,
