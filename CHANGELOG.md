@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v2.0.0...v2.1.0) (2024-05-07)
+
+
+### Features
+
+* add FindOrgCodeClaim extension + rename IOvoCodeWhiteList to IOrganisationWhiteList ([90ef8b9](https://github.com/informatievlaanderen/basisregisters-acmidm/commit/90ef8b9a7d522c6afa1597a68c54af531c8d6bb2))
+
 # [2.0.0](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v1.5.0...v2.0.0) (2024-03-13)
 
 
