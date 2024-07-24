@@ -57,7 +57,7 @@
                     {
                         Authorization = options =>
                         {
-                            options.AddAcmIdmAuthorization();
+                            options.AddAddressPolicies([]).AddBuildingPolicies([]).AddRoadPolicies([]);
                         }
                     }
                 });

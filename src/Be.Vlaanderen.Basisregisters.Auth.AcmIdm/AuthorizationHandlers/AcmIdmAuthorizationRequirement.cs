@@ -7,17 +7,26 @@ namespace Be.Vlaanderen.Basisregisters.Auth.AcmIdm.AuthorizationHandlers
 
     public class AcmIdmAuthorizationRequirement : IAuthorizationRequirement
     {
-        public IReadOnlyList<string> AllowedValues { get; }
+        public IReadOnlyList<string> AllowedScopes { get; }
+        public IReadOnlyList<string> BlacklistedOvoCodes { get; }
 
-        public AcmIdmAuthorizationRequirement(IEnumerable<string> allowedValues)
+        public AcmIdmAuthorizationRequirement(
+            IEnumerable<string> allowedScopes)
+            : this(allowedScopes, [])
+        { }
+
+        public AcmIdmAuthorizationRequirement(
+            IEnumerable<string> allowedScopes,
+            IEnumerable<string> blacklistedOvoCodes)
         {
-            var allowedValuesList = allowedValues.ToList();
-            if (allowedValuesList.IsNullOrEmpty())
+            var allowedScopesList = allowedScopes.ToList();
+            if (allowedScopesList.IsNullOrEmpty())
             {
-                throw new ArgumentNullException(nameof(allowedValues));
+                throw new ArgumentNullException(nameof(allowedScopes));
             }
 
-            AllowedValues = allowedValuesList;
+            AllowedScopes = allowedScopesList;
+            BlacklistedOvoCodes = blacklistedOvoCodes.ToList();
         }
     }
 }
