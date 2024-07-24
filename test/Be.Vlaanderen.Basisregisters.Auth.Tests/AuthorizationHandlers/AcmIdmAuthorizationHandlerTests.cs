@@ -4,22 +4,28 @@
     using System.Linq;
     using System.Security.Claims;
     using System.Threading.Tasks;
-    using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
-    using Be.Vlaanderen.Basisregisters.Auth.AcmIdm.AuthorizationHandlers;
+    using AcmIdm;
+    using AcmIdm.AuthorizationHandlers;
     using FluentAssertions;
     using Microsoft.AspNetCore.Authorization;
     using Xunit;
 
-    public class RequiredScopesAuthorizationHandlerTests
+    public class AcmIdmAuthorizationHandlerTests
     {
-        private readonly string[] _allowedValues = {
+        private readonly string[] _allowedScopes =
+        [
             "dv_ar_adres_beheer",
             "dv_ar_adres_uitzonderingen"
-        };
+        ];
+
+        private readonly string[] _blacklistedOvoCodes =
+        [
+            "OVO001999"
+        ];
 
         private readonly AcmIdmAuthorizationHandler _acmIdmAuthorizationHandler;
 
-        public RequiredScopesAuthorizationHandlerTests()
+        public AcmIdmAuthorizationHandlerTests()
         {
             _acmIdmAuthorizationHandler = new AcmIdmAuthorizationHandler();
         }
@@ -29,8 +35,11 @@
         {
             // Arrange
             var context = new AuthorizationHandlerContext(
-                new IAuthorizationRequirement[] { new AcmIdmAuthorizationRequirement(_allowedValues)},
-                CreateUser(_allowedValues.Take(1)),
+                new IAuthorizationRequirement[] { new AcmIdmAuthorizationRequirement(_allowedScopes, _blacklistedOvoCodes) },
+                CreateUser(
+                [
+                    (AcmIdmClaimTypes.Scope, _allowedScopes.First())
+                ]),
                 null);
 
             //Act
@@ -40,13 +49,19 @@
             context.HasSucceeded.Should().BeTrue();
         }
 
-        [Fact]
-        public async Task WhenNoneOfAllowedScopesPresent_ThenUnauthorized()
+        [Theory]
+        [InlineData(AcmIdmClaimTypes.VoOvoCode)]
+        [InlineData(AcmIdmClaimTypes.VoOrgCode)]
+        public async Task WhenAllowedScopePresentButBlacklisted_ThenAuthorized(string ovoCodeClaimType)
         {
             // Arrange
             var context = new AuthorizationHandlerContext(
-                new IAuthorizationRequirement[] { new AcmIdmAuthorizationRequirement(_allowedValues) },
-                CreateUser(_allowedValues.Take(0)),
+                new IAuthorizationRequirement[] { new AcmIdmAuthorizationRequirement(_allowedScopes, _blacklistedOvoCodes) },
+                CreateUser(
+                [
+                    (AcmIdmClaimTypes.Scope, _allowedScopes.First()),
+                    (ovoCodeClaimType, _blacklistedOvoCodes.First())
+                ]),
                 null);
 
             //Act
@@ -56,9 +71,32 @@
             context.HasSucceeded.Should().BeFalse();
         }
 
-        private ClaimsPrincipal CreateUser(IEnumerable<string> scopes)
+        [Fact]
+        public async Task WhenNoneOfAllowedScopesPresent_ThenUnauthorized()
         {
-            return new ClaimsPrincipal(new ClaimsIdentity(scopes.Select(x => new Claim(AcmIdmClaimTypes.Scope, x)).ToArray(), "Bearer"));
+            // Arrange
+            var context = new AuthorizationHandlerContext(
+                new IAuthorizationRequirement[] { new AcmIdmAuthorizationRequirement(_allowedScopes, _blacklistedOvoCodes) },
+                CreateUser(
+                [
+                    (AcmIdmClaimTypes.Scope, string.Empty)
+                ]),
+                null);
+
+            //Act
+            await _acmIdmAuthorizationHandler.HandleAsync(context);
+
+            //Assert
+            context.HasSucceeded.Should().BeFalse();
+        }
+
+        private ClaimsPrincipal CreateUser(IEnumerable<(string claimType, string claimValue)> claims)
+        {
+            return new ClaimsPrincipal(new ClaimsIdentity(
+                claims
+                    .Select(x => new Claim(x.claimType, x.claimValue))
+                    .ToArray(),
+                "Bearer"));
         }
     }
 }

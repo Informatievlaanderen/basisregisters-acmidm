@@ -7,6 +7,7 @@ namespace AcmIdmConsumer.MinimalApi
     using IdentityModel.AspNetCore.OAuth2Introspection;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
 
     public class Program
     {
@@ -27,7 +28,12 @@ namespace AcmIdmConsumer.MinimalApi
             var oAuth2IntrospectionOptions = builder.Configuration.GetSection(nameof(OAuth2IntrospectionOptions)).Get<OAuth2IntrospectionOptions>();
 
             builder.Services.AddAcmIdmAuthentication(oAuth2IntrospectionOptions!);
-            builder.Services.AddAcmIdmAuthorization();
+            builder.Services
+                .AddAcmIdmAuthorizationHandlers()
+                .AddAuthorizationBuilder()
+                .AddAddressPolicies([])
+                .AddBuildingPolicies([])
+                .AddRoadPolicies([]);
 
             var app = builder.Build();
 

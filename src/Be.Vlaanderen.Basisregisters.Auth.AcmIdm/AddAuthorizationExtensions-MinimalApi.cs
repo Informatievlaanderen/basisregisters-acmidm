@@ -1,91 +1,66 @@
 namespace Be.Vlaanderen.Basisregisters.Auth.AcmIdm
 {
+    using System.Collections.Generic;
     using AuthorizationHandlers;
-    using Be.Vlaanderen.Basisregisters.Auth;
     using Microsoft.AspNetCore.Authorization;
-    using Microsoft.Extensions.DependencyInjection;
 
     public static partial class AddAuthorizationExtensions
     {
-        public static IServiceCollection AddAcmIdmAuthorization(this IServiceCollection services)
+        public static AuthorizationBuilder AddAddressPolicies(this AuthorizationBuilder builder, IEnumerable<string> blacklistedOvoCodes)
         {
-            services
-                .AddAuthorizationBuilder()
-                .AddAcmIdmPolicyAdresDecentraleBijwerker()
-                .AddAcmIdmPolicyAdresInterneBijwerker()
-                .AddAcmIdmPolicyGeschetstGebouwDecentraleBijwerker()
-                .AddAcmIdmPolicyGeschetstGebouwOmgeving()
-                .AddAcmIdmPolicyGeschetstGebouwInterneBijwerker()
-                .AddAcmIdmPolicyIngemetenGebouwGrbBijwerker()
-                .AddAcmIdmPolicyIngemetenGebouwInterneBijwerker()
-                .AddAcmIdmPolicyGeschetsteWegBeheerder()
-                .AddAcmIdmPolicyIngemetenWegBeheerder()
-                .AddAcmIdmPolicyWegenAttribuutWaardenBeheerder()
-                .AddAcmIdmPolicyWegenUitzonderingenBeheerder();
+            builder.AddPolicy(PolicyNames.Adres.DecentraleBijwerker, Scopes.DvArAdresBeheer, blacklistedOvoCodes);
+            builder.AddPolicy(PolicyNames.Adres.InterneBijwerker, Scopes.DvArAdresUitzonderingen);
 
-            services.AddSingleton<IAuthorizationHandler, AcmIdmAuthorizationHandler>();
-
-            return services;
+            return builder;
         }
 
-        private static AuthorizationBuilder AddAcmIdmPolicyAdresDecentraleBijwerker(this AuthorizationBuilder authorizationBuilder)
+        public static AuthorizationBuilder AddBuildingPolicies(this AuthorizationBuilder builder, IEnumerable<string> blacklistedOvoCodes)
         {
-            return authorizationBuilder.AddPolicy(PolicyNames.Adres.DecentraleBijwerker, Scopes.DvArAdresBeheer);
+            builder.AddPolicy(PolicyNames.GeschetstGebouw.DecentraleBijwerker, Scopes.DvGrGeschetstgebouwBeheer, blacklistedOvoCodes);
+            builder.AddPolicy(PolicyNames.GeschetstGebouw.InterneBijwerker, Scopes.DvGrGeschetstgebouwUitzonderingen);
+
+            builder.AddPolicy(PolicyNames.IngemetenGebouw.GrbBijwerker, Scopes.DvGrIngemetengebouwBeheer);
+            builder.AddPolicy(PolicyNames.IngemetenGebouw.InterneBijwerker, Scopes.DvGrIngemetengebouwUitzonderingen);
+
+            return builder;
         }
 
-        private static AuthorizationBuilder AddAcmIdmPolicyAdresInterneBijwerker(this AuthorizationBuilder authorizationBuilder)
+        public static AuthorizationBuilder AddRoadPolicies(this AuthorizationBuilder builder, IEnumerable<string> blacklistedOvoCodes)
         {
-            return authorizationBuilder.AddPolicy(PolicyNames.Adres.InterneBijwerker, Scopes.DvArAdresUitzonderingen);
+            builder.AddPolicy(PolicyNames.GeschetsteWeg.Beheerder, Scopes.DvWrGeschetsteWegBeheer, blacklistedOvoCodes);
+            builder.AddPolicy(PolicyNames.IngemetenWeg.Beheerder, Scopes.DvWrIngemetenWegBeheer);
+            builder.AddPolicy(PolicyNames.WegenAttribuutWaarden.Beheerder, Scopes.DvWrAttribuutWaardenBeheer);
+            builder.AddPolicy(PolicyNames.WegenUitzonderingen.Beheerder, Scopes.DvWrUitzonderingenBeheer);
+
+            return builder;
         }
 
-        private static AuthorizationBuilder AddAcmIdmPolicyGeschetstGebouwDecentraleBijwerker(this AuthorizationBuilder authorizationBuilder)
+        private static AuthorizationBuilder AddPolicy(
+            this AuthorizationBuilder builder,
+            string policyName,
+            string scope)
         {
-            return authorizationBuilder.AddPolicy(PolicyNames.GeschetstGebouw.DecentraleBijwerker, Scopes.DvGrGeschetstgebouwBeheer);
+            builder.AddPolicy(
+                policyName,
+                policyBuilder => policyBuilder.AddRequirements(new AcmIdmAuthorizationRequirement(new[] { scope })));
+
+            return builder;
         }
 
-        private static AuthorizationBuilder AddAcmIdmPolicyGeschetstGebouwOmgeving(this AuthorizationBuilder authorizationBuilder)
+        private static AuthorizationBuilder AddPolicy(
+            this AuthorizationBuilder builder,
+            string policyName,
+            string scope,
+            IEnumerable<string> blacklistedOvoCodes)
         {
-            return authorizationBuilder.AddPolicy(PolicyNames.GeschetstGebouw.Omgeving, Scopes.DvGrGeschetstgebouwBeheer);
-        }
+            builder.AddPolicy(
+                policyName,
+                policyBuilder => policyBuilder.AddRequirements(
+                    new AcmIdmAuthorizationRequirement(
+                        new[] { scope },
+                        blacklistedOvoCodes)));
 
-        private static AuthorizationBuilder AddAcmIdmPolicyGeschetstGebouwInterneBijwerker(this AuthorizationBuilder authorizationBuilder)
-        {
-            return authorizationBuilder.AddPolicy(PolicyNames.GeschetstGebouw.InterneBijwerker, Scopes.DvGrGeschetstgebouwUitzonderingen);
-        }
-
-        private static AuthorizationBuilder AddAcmIdmPolicyIngemetenGebouwGrbBijwerker(this AuthorizationBuilder authorizationBuilder)
-        {
-            return authorizationBuilder.AddPolicy(PolicyNames.IngemetenGebouw.GrbBijwerker, Scopes.DvGrIngemetengebouwBeheer);
-        }
-
-        private static AuthorizationBuilder AddAcmIdmPolicyIngemetenGebouwInterneBijwerker(this AuthorizationBuilder authorizationBuilder)
-        {
-            return authorizationBuilder.AddPolicy(PolicyNames.IngemetenGebouw.InterneBijwerker, Scopes.DvGrIngemetengebouwUitzonderingen);
-        }
-
-        private static AuthorizationBuilder AddAcmIdmPolicyGeschetsteWegBeheerder(this AuthorizationBuilder authorizationBuilder)
-        {
-            return authorizationBuilder.AddPolicy(PolicyNames.GeschetsteWeg.Beheerder, Scopes.DvWrGeschetsteWegBeheer);
-        }
-
-        private static AuthorizationBuilder AddAcmIdmPolicyIngemetenWegBeheerder(this AuthorizationBuilder authorizationBuilder)
-        {
-            return authorizationBuilder.AddPolicy(PolicyNames.IngemetenWeg.Beheerder, Scopes.DvWrIngemetenWegBeheer);
-        }
-
-        private static AuthorizationBuilder AddAcmIdmPolicyWegenAttribuutWaardenBeheerder(this AuthorizationBuilder authorizationBuilder)
-        {
-            return authorizationBuilder.AddPolicy(PolicyNames.WegenAttribuutWaarden.Beheerder, Scopes.DvWrAttribuutWaardenBeheer);
-        }
-
-        private static AuthorizationBuilder AddAcmIdmPolicyWegenUitzonderingenBeheerder(this AuthorizationBuilder authorizationBuilder)
-        {
-            return authorizationBuilder.AddPolicy(PolicyNames.WegenUitzonderingen.Beheerder, Scopes.DvWrUitzonderingenBeheer);
-        }
-
-        private static AuthorizationBuilder AddPolicy(this AuthorizationBuilder authorizationBuilder, string policyName, string scope)
-        {
-            return authorizationBuilder.AddPolicy(policyName, policyBuilder => policyBuilder.AddRequirements(new AcmIdmAuthorizationRequirement(new[] { scope })));
+            return builder;
         }
     }
 }
