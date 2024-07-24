@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v2.1.0...v3.0.0) (2024-07-24)
+
+
+### Features
+
+* add ovocode blacklist ([0973361](https://github.com/informatievlaanderen/basisregisters-acmidm/commit/0973361a98ef462c8a047c6b2b6ddf804a26a563))
+
+
+### BREAKING CHANGES
+
+* extension methods registering all policies split up by groups
+
 # [2.1.0](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v2.0.0...v2.1.0) (2024-05-07)
 
 
