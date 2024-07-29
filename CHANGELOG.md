@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v3.0.0...v3.0.1) (2024-07-29)
+
+
+### Bug Fixes
+
+* bump after breaking change hardcoded niscode list ([ef31a1d](https://github.com/informatievlaanderen/basisregisters-acmidm/commit/ef31a1d416b7278e3cc9821496ff3b7e0ab03958))
+
 # [3.0.0](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v2.1.0...v3.0.0) (2024-07-24)
 
 
