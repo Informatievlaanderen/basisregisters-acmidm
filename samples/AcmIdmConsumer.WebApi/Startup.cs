@@ -106,6 +106,10 @@
                     {
                         PoweredByName = "Vlaamse overheid - Basisregisters Vlaanderen",
                         ServerName = "Digitaal Vlaanderen"
+                    },
+                    MiddlewareHooks =
+                    {
+                        EnableAuthorization = true
                     }
                 });
         }
