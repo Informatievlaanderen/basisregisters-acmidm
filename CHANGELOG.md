@@ -1,3 +1,10 @@
+# [3.2.0](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v3.1.0...v3.2.0) (2024-11-04)
+
+
+### Features
+
+* upgrade niscode package set validfrom ([5f5be3d](https://github.com/informatievlaanderen/basisregisters-acmidm/commit/5f5be3d44b32565511377af721fd1be957639c06))
+
 # [3.1.0](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v3.0.1...v3.1.0) (2024-11-04)
 
 
