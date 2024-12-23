@@ -36,10 +36,15 @@ namespace Be.Vlaanderen.Basisregisters.Auth.AcmIdm
                 })
                 .AddOAuth2Introspection(JwtBearerDefaults.AuthenticationScheme, options =>
                 {
+                    options.Authority = oAuth2IntrospectionOptions.Authority;
                     options.ClientId = oAuth2IntrospectionOptions.ClientId;
                     options.ClientSecret = oAuth2IntrospectionOptions.ClientSecret;
-                    options.Authority = oAuth2IntrospectionOptions.Authority;
                     options.IntrospectionEndpoint = oAuth2IntrospectionOptions.IntrospectionEndpoint;
+
+                    options.CacheDuration = oAuth2IntrospectionOptions.CacheDuration;
+                    options.CacheKeyPrefix = oAuth2IntrospectionOptions.CacheKeyPrefix;
+                    options.EnableCaching = oAuth2IntrospectionOptions.EnableCaching;
+                    options.CacheKeyGenerator = oAuth2IntrospectionOptions.CacheKeyGenerator;
                 });
         }
     }
