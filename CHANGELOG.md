@@ -1,3 +1,10 @@
+# [3.3.0](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v3.2.0...v3.3.0) (2024-12-24)
+
+
+### Features
+
+* add cache settings ([28b9810](https://github.com/informatievlaanderen/basisregisters-acmidm/commit/28b9810a27d1754e8a7f878d26a86ab080fb1526))
+
 # [3.2.0](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v3.1.0...v3.2.0) (2024-11-04)
 
 
