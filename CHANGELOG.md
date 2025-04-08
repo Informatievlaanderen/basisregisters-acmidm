@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v4.0.0...v4.0.1) (2025-04-08)
+
+
+### Bug Fixes
+
+* nuget dependencies ([cb1cf87](https://github.com/informatievlaanderen/basisregisters-acmidm/commit/cb1cf87eaaf04ec6614792e662dc28bff4c34876))
+
 # [4.0.0](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v3.3.0...v4.0.0) (2025-04-08)
 
 
