@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="..\..\packages\Be.Vlaanderen.Basisregisters.Build.Pipeline\Content\Be.Vlaanderen.Basisregisters.Build.Pipeline.Settings.Library.props" />
-  <Import Project="..\..\.paket\Paket.Restore.targets" />
+  <Import Project="..\..\.build\Be.Vlaanderen.Basisregisters.Build.Pipeline\Content\Be.Vlaanderen.Basisregisters.Build.Pipeline.Settings.Library.props" />
+
+  <ItemGroup>
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.NisCodeService.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+    <PackageReference Include="Microsoft.AspNetCore.Authorization" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <PackageReference Include="SourceLink.Embed.AllSourceFiles" PrivateAssets="All" />
+    <PackageReference Include="SourceLink.Copy.PdbFiles" PrivateAssets="All" />
+  </ItemGroup>
 </Project>

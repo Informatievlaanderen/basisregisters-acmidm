@@ -352,3 +352,8 @@ MigrationBackup/
 
 # Jetbrains
 .idea/
+.build/**/*
+!.build
+!.build/Be.Vlaanderen.Basisregisters.Build.Pipeline
+!.build/Be.Vlaanderen.Basisregisters.Build.Pipeline/Content
+!.build/Be.Vlaanderen.Basisregisters.Build.Pipeline/Content/*.props
