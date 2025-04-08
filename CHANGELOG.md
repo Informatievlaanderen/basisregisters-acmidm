@@ -1,3 +1,15 @@
+# [4.0.0](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v3.3.0...v4.0.0) (2025-04-08)
+
+
+### Code Refactoring
+
+* use renovate and nuget + update pipeline ([686c36d](https://github.com/informatievlaanderen/basisregisters-acmidm/commit/686c36d1eebeb7aeee0c5278d52a945715760c9a))
+
+
+### BREAKING CHANGES
+
+* update to dotnet 9
+
 # [3.3.0](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v3.2.0...v3.3.0) (2024-12-24)
 
 

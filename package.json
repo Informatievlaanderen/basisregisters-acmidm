@@ -1,6 +1,6 @@
 {
   "name": "basisregisters-acmidm",
-  "version": "3.3.0",
+  "version": "4.0.0",
   "description": "ACM/IDM utilities for C#",
   "author": "Basisregisters Vlaanderen",
   "license": "MIT",
