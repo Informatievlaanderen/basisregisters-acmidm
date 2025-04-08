@@ -7,6 +7,7 @@
     <ProjectReference Include="..\..\samples\AcmIdmConsumer.MinimalApi\AcmIdmConsumer.MinimalApi.csproj" />
     <ProjectReference Include="..\..\samples\AcmIdmConsumer.WebApi\AcmIdmConsumer.WebApi.csproj" />
     <ProjectReference Include="..\..\src\Be.Vlaanderen.Basisregisters.Auth.AcmIdm\Be.Vlaanderen.Basisregisters.Auth.AcmIdm.csproj" />
+    <ProjectReference Include="..\..\src\Be.Vlaanderen.Basisregisters.Auth\Be.Vlaanderen.Basisregisters.Auth.csproj" />
   </ItemGroup>
   
   <ItemGroup>
@@ -30,5 +31,6 @@
     <PackageReference Include="Moq" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
     <PackageReference Include="Microsoft.AspNetCore.TestHost" />
+    <PackageReference Include="Microsoft.AspNetCore.Authorization" />
   </ItemGroup>
 </Project>

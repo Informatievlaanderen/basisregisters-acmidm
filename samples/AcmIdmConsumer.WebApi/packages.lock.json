@@ -458,11 +458,6 @@
           "Newtonsoft.Json": "13.0.3"
         }
       },
-      "Microsoft.AspNetCore.Metadata": {
-        "type": "Transitive",
-        "resolved": "9.0.3",
-        "contentHash": "urkTc92CKvbZExxTCimJEsRnnhuVx3OAvCeFFxAy6a9ED7XIjo8Y1WfDNLpB4nfdGw2C9YsmI+A5Kow0ZHSBvQ=="
-      },
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
         "type": "Transitive",
         "resolved": "9.0.3",
@@ -1496,19 +1491,9 @@
         "resolved": "7.0.0",
         "contentHash": "sFbY65N/5GdsHx7nkdHFHUG+5Ar4W0w6Aks7Y2X+Q4NOTw6XyX2Il7jm+4tPkc//4mA3nG0RdxI8gKgoJitdLw=="
       },
-      "be.vlaanderen.basisregisters.auth": {
-        "type": "Project",
-        "dependencies": {
-          "Be.Vlaanderen.Basisregisters.NisCodeService.Abstractions": "[6.0.0, )",
-          "Microsoft.AspNetCore.Authentication.JwtBearer": "[9.0.3, )",
-          "Microsoft.AspNetCore.Authorization": "[9.0.3, )",
-          "Microsoft.Extensions.DependencyInjection": "[9.0.3, )"
-        }
-      },
       "be.vlaanderen.basisregisters.auth.acmidm": {
         "type": "Project",
         "dependencies": {
-          "Be.Vlaanderen.Basisregisters.Auth": "[1.0.0, )",
           "Be.Vlaanderen.Basisregisters.NisCodeService.Abstractions": "[6.0.0, )",
           "IdentityModel.AspNetCore.OAuth2Introspection": "[6.2.0, )",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "[9.0.3, )",
@@ -1541,17 +1526,6 @@
         "contentHash": "7+u/rBzHSd9KDT4uLxI8j6n5IKiQ59Yvct6KcYM0QL2ynfBMkon01dDFgQJMpeZf7PTOi5wtI3EEO/dnjsFA1g==",
         "dependencies": {
           "Microsoft.IdentityModel.Protocols.OpenIdConnect": "8.0.1"
-        }
-      },
-      "Microsoft.AspNetCore.Authorization": {
-        "type": "CentralTransitive",
-        "requested": "[9.0.3, )",
-        "resolved": "9.0.3",
-        "contentHash": "3lPGz48SKHAAHY3sMGx+71KeyV6fjBHPGbSoBxwjt9WK4+Lr0/MHi6cWyXZVohWoxFmqq/2hJ39LUryn7w65EA==",
-        "dependencies": {
-          "Microsoft.AspNetCore.Metadata": "9.0.3",
-          "Microsoft.Extensions.Logging.Abstractions": "9.0.3",
-          "Microsoft.Extensions.Options": "9.0.3"
         }
       },
       "Microsoft.Extensions.DependencyInjection": {

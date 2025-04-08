@@ -1,9 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">   
   
-  <ItemGroup>
-    <ProjectReference Include="..\Be.Vlaanderen.Basisregisters.Auth\Be.Vlaanderen.Basisregisters.Auth.csproj" />
-  </ItemGroup>
-
   <Import Project="..\..\.build\Be.Vlaanderen.Basisregisters.Build.Pipeline\Content\Be.Vlaanderen.Basisregisters.Build.Pipeline.Settings.Library.props" />
 
   <PropertyGroup>
@@ -18,6 +14,8 @@
     <PackageProjectUrl>https://github.com/Informatievlaanderen/basisregisters-acmidm</PackageProjectUrl>
     <PackageIcon>logo.png</PackageIcon>
     <Description>BasisRegisters Auth ACM/IDM utilities for C#.</Description>
+    <!-- Include referenced projects' outputs in this package -->
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,6 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Be.Vlaanderen.Basisregisters.Auth\Be.Vlaanderen.Basisregisters.Auth.csproj" PrivateAssets="all" />
+
     <PackageReference Include="Be.Vlaanderen.Basisregisters.NisCodeService.Abstractions" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
     <PackageReference Include="IdentityModel.AspNetCore.OAuth2Introspection" />
@@ -33,5 +33,13 @@
     <PackageReference Include="SourceLink.Embed.AllSourceFiles" PrivateAssets="all" />
     <PackageReference Include="SourceLink.Copy.PdbFiles" PrivateAssets="all" />
   </ItemGroup>
+
+  <!-- Target to collect reference outputs for packaging -->
+  <Target Name="CopyProjectReferencesToPackage">
+    <ItemGroup>
+      <BuildOutputInPackage Include="$(MSBuildProjectDirectory)\$(OutputPath)Be.Vlaanderen.Basisregisters.Auth.dll" />
+      <BuildOutputInPackage Include="$(MSBuildProjectDirectory)\$(OutputPath)Be.Vlaanderen.Basisregisters.Auth.pdb" />
+    </ItemGroup>
+  </Target>
 
 </Project>
