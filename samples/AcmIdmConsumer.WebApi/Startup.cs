@@ -20,7 +20,7 @@
     public class Startup
     {
         private readonly IConfiguration _configuration;
-        private IContainer _applicationContainer;
+        private IContainer? _applicationContainer;
 
         public Startup(IConfiguration configuration)
         {
@@ -82,7 +82,7 @@
                 {
                     Common =
                     {
-                        ApplicationContainer = _applicationContainer,
+                        ApplicationContainer = _applicationContainer!,
                         ServiceProvider = serviceProvider,
                         HostingEnvironment = env,
                         ApplicationLifetime = appLifetime,

@@ -25,11 +25,11 @@
         private const string ClientId = "acmClient";
         private const string ClientSecret = "secret";
 
-        private OAuth2IntrospectionOptions _oAuth2IntrospectionOptions;
+        private OAuth2IntrospectionOptions _oAuth2IntrospectionOptions = null!;
 
-        private ICompositeService _identityServerFake;
-        private WebApplicationFactory<Program> _minimalApiSample;
-        private TestServer _webApiSample;
+        private ICompositeService _identityServerFake = null!;
+        private WebApplicationFactory<Program> _minimalApiSample = null!;
+        private TestServer _webApiSample = null!;
 
         public Task InitializeAsync()
         {

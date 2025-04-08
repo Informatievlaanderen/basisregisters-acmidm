@@ -4,12 +4,34 @@
     <ProjectReference Include="..\Be.Vlaanderen.Basisregisters.Auth\Be.Vlaanderen.Basisregisters.Auth.csproj" />
   </ItemGroup>
 
-  <Import Project="..\..\packages\Be.Vlaanderen.Basisregisters.Build.Pipeline\Content\Be.Vlaanderen.Basisregisters.Build.Pipeline.Settings.Library.props" />
+  <Import Project="..\..\.build\Be.Vlaanderen.Basisregisters.Build.Pipeline\Content\Be.Vlaanderen.Basisregisters.Build.Pipeline.Settings.Library.props" />
+
+  <PropertyGroup>
+    <Version>1.0.0</Version>
+    <PackageId>Be.Vlaanderen.Basisregisters.Auth.AcmIdm</PackageId>
+    <Title>Be.Vlaanderen.Basisregisters.Auth.AcmIdm</Title>
+    <Authors>Basisregisters Vlaanderen</Authors>
+    <Owners>Digitaal Vlaanderen</Owners>
+    <Copyright>Copyright (c) Digitaal Vlaanderen</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageProjectUrl>https://github.com/Informatievlaanderen/basisregisters-acmidm</PackageProjectUrl>
+    <PackageIcon>logo.png</PackageIcon>
+    <Description>BasisRegisters Auth ACM/IDM utilities for C#.</Description>
+  </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="paket.template" CopyToOutputDirectory="Always" />
+    <None Include="..\..\.build\Be.Vlaanderen.Basisregisters.Build.Pipeline\Content\logo.png" Pack="true" PackagePath="" />
   </ItemGroup>
 
-  <Import Project="..\..\.paket\Paket.Restore.targets" />
+  <ItemGroup>
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.NisCodeService.Abstractions" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <PackageReference Include="IdentityModel.AspNetCore.OAuth2Introspection" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+
+    <PackageReference Include="SourceLink.Embed.AllSourceFiles" PrivateAssets="all" />
+    <PackageReference Include="SourceLink.Copy.PdbFiles" PrivateAssets="all" />
+  </ItemGroup>
 
 </Project>

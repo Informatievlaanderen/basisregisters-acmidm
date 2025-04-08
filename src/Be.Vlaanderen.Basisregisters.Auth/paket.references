@@ -1,8 +1,0 @@
-Be.Vlaanderen.Basisregisters.NisCodeService.Abstractions
-
-Microsoft.Extensions.DependencyInjection
-Microsoft.AspNetCore.Authorization
-Microsoft.AspNetCore.Authentication.JwtBearer
-
-SourceLink.Embed.AllSourceFiles
-SourceLink.Copy.PdbFiles
