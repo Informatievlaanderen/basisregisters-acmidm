@@ -1,37 +1,35 @@
 namespace AcmIdmConsumer.WebApi
 {
+    using Autofac;
+    using Autofac.Extensions.DependencyInjection;
     using Be.Vlaanderen.Basisregisters.Api;
-    using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Hosting;
 
     public static class Program
     {
-        public static void Main(string[] args) => CreateWebHostBuilder(args).Build().Run();
+        public static void Main(string[] args) => CreateHostBuilder(args).Build().Run();
 
-        public static IHostBuilder CreateWebHostBuilder(string[] args)
+        public static IHostBuilder CreateHostBuilder(string[] args)
         {
             return new HostBuilder()
-                .ConfigureWebHost(webHostBuilder =>
-                {
-                    webHostBuilder
-                        .UseDefaultForApi<Startup>(
-                            new ProgramOptions
-                            {
-                                Hosting =
-                                {
-                                    HttpPort = 10001
-                                },
-                                Logging =
-                                {
-                                    WriteTextToConsole = false,
-                                    WriteJsonToConsole = false
-                                },
-                                Runtime =
-                                {
-                                    CommandLineArgs = args
-                                }
-                            });
-                });
+                .UseServiceProviderFactory(new AutofacServiceProviderFactory(c => c.RegisterModule(new ApiModule())))
+                .UseDefaultForApi<Startup>(
+                    new ProgramOptions
+                    {
+                        Hosting =
+                        {
+                            HttpPort = 10001
+                        },
+                        Logging =
+                        {
+                            WriteTextToConsole = false,
+                            WriteJsonToConsole = false
+                        },
+                        Runtime =
+                        {
+                            CommandLineArgs = args
+                        }
+                    });
         }
     }
 }

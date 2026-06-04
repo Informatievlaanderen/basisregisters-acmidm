@@ -7,6 +7,9 @@
     using System.Net.Http.Headers;
     using System.Threading.Tasks;
     using AcmIdmConsumer.WebApi;
+    using Api;
+    using Autofac;
+    using Autofac.Extensions.DependencyInjection;
     using Be.Vlaanderen.Basisregisters.DockerUtilities;
     using Ductus.FluentDocker.Services;
     using Duende.AspNetCore.Authentication.OAuth2Introspection;
@@ -56,6 +59,7 @@
         private async Task<TestServer> RunWebApiSample(IConfiguration applicationConfiguration)
         {
             var hostBuilder = new HostBuilder()
+                .UseServiceProviderFactory(new AutofacServiceProviderFactory(c => c.RegisterModule(new ApiModule())))
                 .ConfigureWebHost(webHostBuilder =>
                 {
                     webHostBuilder.UseConfiguration(applicationConfiguration)

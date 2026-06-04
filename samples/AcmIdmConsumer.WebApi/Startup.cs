@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Reflection;
     using Asp.Versioning.ApiExplorer;
-    using Autofac;
     using Autofac.Extensions.DependencyInjection;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
@@ -20,18 +19,18 @@
     public class Startup
     {
         private readonly IConfiguration _configuration;
-        private IContainer? _applicationContainer;
 
         public Startup(IConfiguration configuration)
         {
             _configuration = configuration;
         }
 
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
             var oAuth2IntrospectionOptions = _configuration.GetSection(nameof(OAuth2IntrospectionOptions)).Get<OAuth2IntrospectionOptions>();
 
             services.AddAcmIdmAuthentication(oAuth2IntrospectionOptions!);
+            services.AddAcmIdmAuthorizationHandlers();
 
             services
                 .ConfigureDefaultForApi<Startup>(new StartupConfigureOptions
@@ -61,12 +60,6 @@
                         }
                     }
                 });
-
-            var containerBuilder = new ContainerBuilder();
-            containerBuilder.RegisterModule(new ApiModule(services));
-            _applicationContainer = containerBuilder.Build();
-
-            return new AutofacServiceProvider(_applicationContainer);
         }
 
         public void Configure(
@@ -82,7 +75,7 @@
                 {
                     Common =
                     {
-                        ApplicationContainer = _applicationContainer!,
+                        ApplicationContainer = serviceProvider.GetAutofacRoot(),
                         ServiceProvider = serviceProvider,
                         HostingEnvironment = env,
                         ApplicationLifetime = appLifetime,
