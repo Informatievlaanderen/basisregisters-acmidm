@@ -27,7 +27,7 @@
 
     <PackageReference Include="Be.Vlaanderen.Basisregisters.NisCodeService.Abstractions" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
-    <PackageReference Include="IdentityModel.AspNetCore.OAuth2Introspection" />
+    <PackageReference Include="Duende.AspNetCore.Authentication.OAuth2Introspection" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
 
     <PackageReference Include="SourceLink.Embed.AllSourceFiles" PrivateAssets="all" />
