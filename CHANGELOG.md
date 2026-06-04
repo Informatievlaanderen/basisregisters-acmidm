@@ -1,3 +1,15 @@
+# [5.0.0](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v4.0.1...v5.0.0) (2026-06-04)
+
+
+### Features
+
+* update packages + upgrade to dotnet 10 ([d374313](https://github.com/informatievlaanderen/basisregisters-acmidm/commit/d374313dc8e106cc810404ee02db32f93ebac7ec))
+
+
+### BREAKING CHANGES
+
+* update to dotnet 10
+
 ## [4.0.1](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v4.0.0...v4.0.1) (2025-04-08)
 
 
