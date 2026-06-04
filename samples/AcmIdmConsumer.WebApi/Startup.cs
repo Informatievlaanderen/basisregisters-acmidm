@@ -8,14 +8,14 @@
     using Autofac.Extensions.DependencyInjection;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
-    using IdentityModel.AspNetCore.OAuth2Introspection;
+    using Duende.AspNetCore.Authentication.OAuth2Introspection;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
-    using Microsoft.OpenApi.Models;
+    using Microsoft.OpenApi;
 
     public class Startup
     {

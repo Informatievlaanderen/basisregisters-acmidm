@@ -1,6 +1,6 @@
 namespace Be.Vlaanderen.Basisregisters.Auth.AcmIdm
 {
-    using IdentityModel.AspNetCore.OAuth2Introspection;
+    using Duende.AspNetCore.Authentication.OAuth2Introspection;
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.Extensions.DependencyInjection;
@@ -43,7 +43,7 @@ namespace Be.Vlaanderen.Basisregisters.Auth.AcmIdm
 
                     options.CacheDuration = oAuth2IntrospectionOptions.CacheDuration;
                     options.CacheKeyPrefix = oAuth2IntrospectionOptions.CacheKeyPrefix;
-                    options.EnableCaching = oAuth2IntrospectionOptions.EnableCaching;
+                    options.SetCacheEntryFlags = oAuth2IntrospectionOptions.SetCacheEntryFlags;
                     options.CacheKeyGenerator = oAuth2IntrospectionOptions.CacheKeyGenerator;
                 });
         }

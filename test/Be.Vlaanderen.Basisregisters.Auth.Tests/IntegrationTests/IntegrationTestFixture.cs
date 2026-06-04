@@ -9,9 +9,9 @@
     using AcmIdmConsumer.WebApi;
     using Be.Vlaanderen.Basisregisters.DockerUtilities;
     using Ductus.FluentDocker.Services;
-    using IdentityModel;
-    using IdentityModel.AspNetCore.OAuth2Introspection;
-    using IdentityModel.Client;
+    using Duende.AspNetCore.Authentication.OAuth2Introspection;
+    using Duende.IdentityModel;
+    using Duende.IdentityModel.Client;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc.Testing;
     using Microsoft.AspNetCore.TestHost;
