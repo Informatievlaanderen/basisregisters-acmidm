@@ -16,6 +16,7 @@
     using Microsoft.AspNetCore.Mvc.Testing;
     using Microsoft.AspNetCore.TestHost;
     using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
     using Xunit;
     using Program = AcmIdmConsumer.MinimalApi.Program;
@@ -31,7 +32,7 @@
         private WebApplicationFactory<Program> _minimalApiSample = null!;
         private TestServer _webApiSample = null!;
 
-        public Task InitializeAsync()
+        public async Task InitializeAsync()
         {
             var applicationConfiguration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
@@ -41,11 +42,9 @@
 
             _identityServerFake = DockerComposer.Compose("identityserverfake_test.yml", "acm-idm-integrationtests");
             _minimalApiSample = RunMinimalApiSample(applicationConfiguration);
-            _webApiSample = RunWebApiSample(applicationConfiguration);
+            _webApiSample = await RunWebApiSample(applicationConfiguration);
 
             _oAuth2IntrospectionOptions = applicationConfiguration.GetSection(nameof(OAuth2IntrospectionOptions)).Get<OAuth2IntrospectionOptions>()!;
-
-            return Task.CompletedTask;
         }
 
         private WebApplicationFactory<Program> RunMinimalApiSample(IConfiguration applicationConfiguration)
@@ -54,15 +53,21 @@
                 .WithWebHostBuilder(x => x.UseConfiguration(applicationConfiguration));
         }
 
-        private TestServer RunWebApiSample(IConfiguration applicationConfiguration)
+        private async Task<TestServer> RunWebApiSample(IConfiguration applicationConfiguration)
         {
-            var hostBuilder = new WebHostBuilder()
-                .UseConfiguration(applicationConfiguration)
-                .UseStartup<Startup>()
-                .ConfigureLogging(loggingBuilder => loggingBuilder.AddConsole())
-                .UseTestServer();
+            var hostBuilder = new HostBuilder()
+                .ConfigureWebHost(webHostBuilder =>
+                {
+                    webHostBuilder.UseConfiguration(applicationConfiguration)
+                        .UseStartup<Startup>()
+                        .ConfigureLogging(loggingBuilder => loggingBuilder.AddConsole())
+                        .UseTestServer();
+                })
+            .Build();
 
-            return new TestServer(hostBuilder);
+            await hostBuilder.StartAsync();
+
+            return hostBuilder.GetTestServer();
         }
 
         public async Task<HttpResponseMessage> GetMinimalApiAsync(string requestUri, string accessToken)
@@ -95,7 +100,7 @@
 
             var response = await tokenClient.RequestTokenAsync(OidcConstants.GrantTypes.ClientCredentials);
 
-            return response.AccessToken;
+            return response.AccessToken!;
         }
 
         public Task DisposeAsync()
