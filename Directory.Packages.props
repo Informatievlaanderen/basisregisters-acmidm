@@ -5,7 +5,7 @@
         <CentralPackageVersionOverrideEnabled>false</CentralPackageVersionOverrideEnabled>
     </PropertyGroup>
     <ItemGroup>
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.Api" Version="26.0.0" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.Api" Version="27.0.0" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.NisCodeService.Abstractions" Version="7.0.0" />
 
         <PackageVersion Include="Microsoft.AspNetCore.Authorization" Version="10.0.8" />
