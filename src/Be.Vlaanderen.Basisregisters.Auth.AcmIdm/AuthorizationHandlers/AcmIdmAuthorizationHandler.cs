@@ -11,7 +11,7 @@ namespace Be.Vlaanderen.Basisregisters.Auth.AcmIdm.AuthorizationHandlers
             AuthorizationHandlerContext context,
             AcmIdmAuthorizationRequirement requirement)
         {
-            var ovoCode = FindOvoCode(context);
+            var ovoCode = context.User.FindOvoCodeClaim();
 
             if (!string.IsNullOrWhiteSpace(ovoCode)
                 && requirement.BlacklistedOvoCodes.Any(x => string.Equals(x, ovoCode, StringComparison.InvariantCultureIgnoreCase)))
@@ -30,23 +30,6 @@ namespace Be.Vlaanderen.Basisregisters.Auth.AcmIdm.AuthorizationHandlers
             }
 
             context.Fail();
-        }
-
-        private static string? FindOvoCode(AuthorizationHandlerContext context)
-        {
-            var voOvoCodeValue = context.User.FindFirst(AcmIdmClaimTypes.VoOvoCode)?.Value;
-
-            if (voOvoCodeValue is not null)
-            {
-                return voOvoCodeValue;
-            }
-
-            var voOrgCodeValue = context.User.FindFirst(AcmIdmClaimTypes.VoOrgCode)?.Value;
-
-            if (voOrgCodeValue is not null && voOrgCodeValue.StartsWith("ovo", StringComparison.OrdinalIgnoreCase))
-                return voOrgCodeValue;
-
-            return null;
         }
     }
 }

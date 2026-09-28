@@ -56,5 +56,48 @@ namespace Be.Vlaanderen.Basisregisters.Auth.Tests
         {
             _httpContext.FindOrgCodeClaim().Should().Be("0643634986");
         }
+
+        [Theory]
+        [InlineData("OVO000111", "OVO000222", "OVO000333", "OVO000111")]
+        [InlineData("", "OVO000222", "OVO000333", "OVO000222")]
+        [InlineData("", "12345678", "OVO000333", "OVO000333")]
+        [InlineData("   ", "", "OVO000333", "OVO000333")]
+        [InlineData("", "12345678", "", null)]
+        public void FindOvoCodeClaim_RespectsClaimPriority(
+            string voOvoCode,
+            string voOrgCode,
+            string customOvoCode,
+            string? expected)
+        {
+            DefaultHttpContext httpContext = new()
+            {
+                User = new ClaimsPrincipal(new ClaimsIdentity(
+                    new[]
+                    {
+                        new Claim(AcmIdmClaimTypes.VoOvoCode, voOvoCode),
+                        new Claim(AcmIdmClaimTypes.VoOrgCode, voOrgCode),
+                        new Claim(AcmIdmClaimTypes.CustomOvoCode, customOvoCode)
+                    }))
+            };
+
+            httpContext.FindOvoCodeClaim().Should().Be(expected);
+            httpContext.User.FindOvoCodeClaim().Should().Be(expected);
+        }
+
+        [Fact]
+        public void FindCustomOrgOvoCodeClaim()
+        {
+            DefaultHttpContext httpContext = new()
+            {
+                User = new ClaimsPrincipal(new ClaimsIdentity(
+                    new[]
+                    {
+                        new Claim(AcmIdmClaimTypes.CustomOvoCode, "OVO002949")
+                    }))
+            };
+
+            httpContext.FindCustomOrgOvoCodeClaim().Should().Be("OVO002949");
+            httpContext.User.FindCustomOrgOvoCodeClaim().Should().Be("OVO002949");
+        }
     }
 }
