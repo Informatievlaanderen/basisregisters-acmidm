@@ -1,3 +1,10 @@
+# [5.1.0](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v5.0.0...v5.1.0) (2026-09-28)
+
+
+### Features
+
+* add setbyapi_vo_orgcode_ovo ([fd5039a](https://github.com/informatievlaanderen/basisregisters-acmidm/commit/fd5039a364e8d2e97b409bbad1252d0a818afc0b))
+
 # [5.0.0](https://github.com/informatievlaanderen/basisregisters-acmidm/compare/v4.0.1...v5.0.0) (2026-06-04)
 
 
