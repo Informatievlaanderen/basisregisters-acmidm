@@ -6,6 +6,7 @@
         public const string VoOrgCode = "vo_orgcode";
         public const string VoOvoCode = "vo_ovocode";
         public const string VoOrgNaam = "vo_orgnaam";
+        public const string CustomOvoCode = "setbyapi_vo_orgcode_ovo";
         public const string VoApplicatieNaam = "vo_applicatienaam";
         public const string NisCode = "niscode";
     }
