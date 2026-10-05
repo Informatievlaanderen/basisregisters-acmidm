@@ -30,6 +30,54 @@ namespace Be.Vlaanderen.Basisregisters.Auth.Tests
             _httpContext.HasScope(Scopes.DvArAdresBeheer).Should().BeFalse();
         }
 
+        // What the OAuth2 introspection scheme produces: all scopes of the token in a single space separated value.
+        [Fact]
+        public void HasScopeInASpaceSeparatedClaim()
+        {
+            var httpContext = CreateHttpContextWithScopeClaim($"vo_info {Scopes.DvArAdresUitzonderingen}");
+
+            httpContext.HasScope(Scopes.DvArAdresUitzonderingen).Should().BeTrue();
+            httpContext.HasScope("vo_info").Should().BeTrue();
+            httpContext.HasScope(Scopes.DvArAdresBeheer).Should().BeFalse();
+        }
+
+        [Fact]
+        public void IsInterneBijwerkerFromASpaceSeparatedClaim()
+        {
+            var httpContext = CreateHttpContextWithScopeClaim($"vo_info {Scopes.DvWrUitzonderingenBeheer}");
+
+            httpContext.IsInterneBijwerker().Should().BeTrue();
+        }
+
+        [Fact]
+        public void GetScopesSplitsBothShapes()
+        {
+            var httpContext = new DefaultHttpContext
+            {
+                User = new ClaimsPrincipal(new ClaimsIdentity(
+                    new[]
+                    {
+                        new Claim(AcmIdmClaimTypes.Scope, $"vo_info {Scopes.DvArAdresBeheer}"),
+                        new Claim(AcmIdmClaimTypes.Scope, Scopes.DvArAdresUitzonderingen)
+                    }))
+            };
+
+            httpContext.GetScopes().Should().BeEquivalentTo([
+                "vo_info",
+                Scopes.DvArAdresBeheer,
+                Scopes.DvArAdresUitzonderingen
+            ]);
+        }
+
+        private static DefaultHttpContext CreateHttpContextWithScopeClaim(string scopeClaimValue)
+        {
+            return new DefaultHttpContext
+            {
+                User = new ClaimsPrincipal(new ClaimsIdentity(
+                    new[] { new Claim(AcmIdmClaimTypes.Scope, scopeClaimValue) }))
+            };
+        }
+
         [Fact]
         public void IsInterneBijwerker()
         {

@@ -49,6 +49,56 @@
             context.HasSucceeded.Should().BeTrue();
         }
 
+        // What the OAuth2 introspection scheme produces: ACM/IDM answers the introspection call with every scope of the
+        // token in a single space separated value, instead of one claim per scope.
+        [Theory]
+        [InlineData("dv_ar_adres_beheer")]
+        [InlineData("vo_info dv_ar_adres_beheer")]
+        [InlineData("dv_ar_adres_beheer vo_info")]
+        [InlineData("vo vo_info dv_ar_adres_uitzonderingen dv_gr_geschetstgebouw_beheer")]
+        public async Task WhenAnAllowedScopeSitsInASpaceSeparatedClaim_ThenAuthorized(string scopeClaimValue)
+        {
+            // Arrange
+            var context = new AuthorizationHandlerContext(
+                new IAuthorizationRequirement[] { new AcmIdmAuthorizationRequirement(_allowedScopes, _blacklistedOvoCodes) },
+                CreateUser(
+                [
+                    (AcmIdmClaimTypes.Scope, scopeClaimValue)
+                ]),
+                null);
+
+            //Act
+            await _acmIdmAuthorizationHandler.HandleAsync(context);
+
+            //Assert
+            context.HasSucceeded.Should().BeTrue();
+        }
+
+        [Theory]
+        [InlineData("vo_info")]
+        [InlineData("vo vo_info dv_gr_geschetstgebouw_beheer")]
+        // A scope an allowed one is a prefix of must not be mistaken for it.
+        [InlineData("dv_ar_adres_beheerder")]
+        // Scope values are case sensitive (RFC 6749 §3.3).
+        [InlineData("vo_info DV_AR_ADRES_BEHEER")]
+        public async Task WhenASpaceSeparatedClaimHoldsNoAllowedScope_ThenUnauthorized(string scopeClaimValue)
+        {
+            // Arrange
+            var context = new AuthorizationHandlerContext(
+                new IAuthorizationRequirement[] { new AcmIdmAuthorizationRequirement(_allowedScopes, _blacklistedOvoCodes) },
+                CreateUser(
+                [
+                    (AcmIdmClaimTypes.Scope, scopeClaimValue)
+                ]),
+                null);
+
+            //Act
+            await _acmIdmAuthorizationHandler.HandleAsync(context);
+
+            //Assert
+            context.HasSucceeded.Should().BeFalse();
+        }
+
         [Theory]
         [InlineData(AcmIdmClaimTypes.VoOvoCode)]
         [InlineData(AcmIdmClaimTypes.VoOrgCode)]

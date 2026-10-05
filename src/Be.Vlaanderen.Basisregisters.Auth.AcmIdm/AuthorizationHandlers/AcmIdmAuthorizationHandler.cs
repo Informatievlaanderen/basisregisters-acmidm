@@ -20,8 +20,7 @@ namespace Be.Vlaanderen.Basisregisters.Auth.AcmIdm.AuthorizationHandlers
                 return;
             }
 
-            if (requirement.AllowedScopes.Any(scope =>
-                    context.User.HasClaim(x => x.Type == AcmIdmClaimTypes.Scope && x.Value == scope)))
+            if (requirement.AllowedScopes.Any(scope => context.User.HasScope(scope)))
             {
                 await Task.Yield();
 
